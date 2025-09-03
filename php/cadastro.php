@@ -1,12 +1,15 @@
 <?php 
-    include("..\padrao\header.php");
+    include("../padrao/header.php");
 ?>
 
 
 <div class="card shadow p-4 position-absolute top-50 start-50 translate-middle" style="width: 30rem;">
     <h3 class="text-center mb-3">Cadastro</h3>
-        <form action="php/acoes.php" method="post">
+        <form action="acoes.php" method="post">
+            
             <input type="hidden" name="acao" value="cadastrar">
+
+            
 
             <div class="mb-3">
                 <label class="form-label">Nome</label>
@@ -46,6 +49,7 @@
 </div>
 
 <?php 
+    
     include('..\padrao\footer.php');
 
 ?>
