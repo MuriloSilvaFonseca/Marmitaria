@@ -10,7 +10,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Endereço</label>
-                <input type="text" name="nome_usuario" class="form-control" placeholder="Rua São João">
+                <input type="text" name="endereco" class="form-control" placeholder="Rua São João" required>
             </div>
 
             <div class="mb-3">
@@ -25,12 +25,12 @@
 
             <div class="mb-3">
                 <label class="form-label">Número</label>
-                <input type="number" name="numero" class="form-control" placeholder="116" required>
+                <input type="number" name="num_casa" class="form-control" placeholder="116" required>
             </div>
 
             <div class="mb-3">
-                <label for="cidade" class="form-label">Escolha uma cidade</label>
-                    <select class="form-select" id="cidade" name="cidade">
+                <label for="cidade" class="form-label">Estado</label>
+                    <select class="form-select" name="estado" required>
                         <option selected>Selecione...</option>
                         <option value="sp">São Paulo</option>
                         <option value="rj">Rio de Janeiro</option>
@@ -41,6 +41,11 @@
             <div class="mb-3">
                 <label class="form-label">Complemento</label>
                 <input type="text" name="complemento" class="form-control" placeholder="Casa">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">CEP</label>
+                <input type="text" name="cep" class="form-control" placeholder="13872-777" required>
             </div>
 
             <button type="submit" class="btn btn-primary w-100">Criar</button>
