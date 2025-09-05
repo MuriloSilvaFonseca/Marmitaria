@@ -1,9 +1,7 @@
 <?php 
     include("padrao/header.php");
 
-
-    include("php/login.php");
-
+    include("php/user/registro/login.php");
 
     include("padrao/footer.php");
 ?>

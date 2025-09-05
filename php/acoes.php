@@ -50,7 +50,7 @@
                     $cep = $_POST["cep"];
 
 
-                    if (!empty($endereco) && !empty($bairro) && !empty($cidade) && !empty($estado) && ($complemento) && !empty($num_casa) && !empty($cep)) {
+                    if (!empty($endereco) && !empty($bairro) && !empty($cidade) && !empty($estado) && !empty($num_casa) && !empty($cep)) {
 
                     $_SESSION["endereco"] = $endereco;
                     $_SESSION["bairro"] = $bairro;
@@ -169,25 +169,36 @@
                     $email_login = $_REQUEST["email_login"];
                     $senha_login = $_REQUEST["senha_login"];
 
-                    $sql = "SELECT email, senha FROM usuario 
+                    $sql = "SELECT email, senha, tipo_usuario FROM usuario 
                             WHERE email = '$email_login' AND senha = '$senha_login'";
                     $res = $conn -> query($sql);
 
                     $contRow = $res -> rowCount();
-                    
 
                     if ($contRow > 0) {
-                        echo "<script>location.href='home.php';</script>";
-                        $_SESSION["email_login"] = $email_login;
-                        $_SESSION["senha_login"] = $senha_login;
+                        $tipoUser = $res -> fetchObject();
+                        $tipo_usuario = $tipoUser -> tipo_usuario;
+                        if ($tipo_usuario == 'Cliente') {
+                            $_SESSION["email_login"] = $email_login;
+                            $_SESSION["senha_login"] = $senha_login;
+                            $_SESSION["tipo_usuario"] = $tipo_usuario;
+                            echo "<script>location.href='home.php';</script>";
+                        } else {
+                            $_SESSION["email_login"] = $email_login;
+                            $_SESSION["senha_login"] = $senha_login;
+                            $_SESSION["tipo_usuario"] = $tipo_usuario;
+                            echo "<script>location.href='home-adm.php';</script>";
+                        }
+
 
                     } else {
                         unset($_SESSION["email_login"]);
                         unset($_SESSION["senha_login"]);
+
                         echo "<script>alert('Não foi possível entrar');</script>";
                         echo "<script>location.href='../index.php';</script>";
-                        
                     };
+
                 } else {
                     echo "<script>alert('Não foi possível entrar');</script>";
                     echo "<script>location.href='../index.php';</script>";

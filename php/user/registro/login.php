@@ -1,6 +1,3 @@
-
-
-
 <div class="d-flex justify-content-center align-items-center vh-100">
 
     <div class="card shadow p-4" style="width: 22rem;">
@@ -20,7 +17,7 @@
 
             <button type="submit" class="btn btn-primary w-100">Entrar</button>
 
-            <p class="mt-2 text-center">Não tem uma conta? <a href="php/cadastro.php">Registre-se</a></p>
+            <p class="mt-2 text-center">Não tem uma conta? <a href="cadastro.php">Registre-se</a></p>
         </form>
     </div>
     

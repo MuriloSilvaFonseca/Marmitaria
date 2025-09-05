@@ -3,7 +3,6 @@
     
 ?>
 
-
 <div class="card shadow p-4 position-absolute top-50 start-50 translate-middle" style="width: 30rem;">
     <h3 class="text-center mb-3">Cadastro</h3>
         <form action="acoes.php" method="post">
@@ -30,7 +29,6 @@
                 <label class="form-label">Telefone</label>
                 <input type="tel" name="telefone" class="form-control" placeholder="Digite seu telefone" required>
             </div>
-
 
             <div class="mb-3">
                 <label class="form-label">CPF</label>

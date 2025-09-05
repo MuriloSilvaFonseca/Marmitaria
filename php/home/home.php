@@ -9,11 +9,10 @@
     } else {
 
     }
-    include("../padrao/nav.php")
+    include("../padrao/nav.php");
+
 ?>
-
-
-<h1>Cliente</h1>
+    
 
 <?php 
     include('../padrao/footer.php')
