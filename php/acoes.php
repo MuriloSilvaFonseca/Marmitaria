@@ -169,15 +169,15 @@
                     $email_login = $_REQUEST["email_login"];
                     $senha_login = $_REQUEST["senha_login"];
 
-                    $sql = "SELECT email, senha, tipo_usuario FROM usuario 
+                    $sql = "SELECT email, senha FROM usuario 
                             WHERE email = '$email_login' AND senha = '$senha_login'";
-                    $res = $conn -> prepare($sql);
+                    $res = $conn -> query($sql);
 
                     $contRow = $res -> rowCount();
                     
 
                     if ($contRow > 0) {
-                        echo "<script>location.href='home-adm.php';</script>";
+                        echo "<script>location.href='home.php';</script>";
                         $_SESSION["email_login"] = $email_login;
                         $_SESSION["senha_login"] = $senha_login;
 
