@@ -1,5 +1,5 @@
 <?php 
-    include("../padrao/header.php");
+    include("../../../padrao/header.php");
     
 ?>
 
@@ -47,5 +47,5 @@
 </div>
 
 <?php 
-    include('..\padrao\footer.php');
+    include('../../../padrao/footer.php');
 ?>

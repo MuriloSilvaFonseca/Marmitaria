@@ -1,5 +1,5 @@
 <?php 
-    include('../padrao/header.php');
+    include('../../padrao/header.php');
 
     session_start();
     
@@ -12,12 +12,12 @@
     $logado = $_SESSION["email_login"];
     $userHome = $_SESSION["tipo_usuario"];
     $logadosenha = $_SESSION["senha_login"];
-    include("../padrao/nav.php");
+    include("../../padrao/nav.php");
 ?>
 
 <h1>ADM</h1>
 
 <?php 
-    include('../padrao/footer.php')
+    include('../../padrao/footer.php')
     
 ?>

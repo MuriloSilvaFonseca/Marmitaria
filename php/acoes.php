@@ -187,7 +187,7 @@
                             $_SESSION["email_login"] = $email_login;
                             $_SESSION["senha_login"] = $senha_login;
                             $_SESSION["tipo_usuario"] = $tipo_usuario;
-                            echo "<script>location.href='home-adm.php';</script>";
+                            echo "<script>location.href='home/home-adm.php';</script>";
                         }
 
 

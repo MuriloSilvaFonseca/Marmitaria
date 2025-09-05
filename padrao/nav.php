@@ -15,7 +15,7 @@
         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
       </div>
 
-      <a href="../index.php" class="btn btn-danger ms-auto" onclick="<?php unset($_SESSION["email_login"]); unset($_SESSION["senha_login"]); unset($_SESSION["tipo_usuario"]); ?>">Sair</a>
+      <a href="../../index.php" class="btn btn-danger ms-auto" onclick="<?php unset($_SESSION["email_login"]); unset($_SESSION["senha_login"]); unset($_SESSION["tipo_usuario"]); ?>">Sair</a>
 
     </div>
   </div>
