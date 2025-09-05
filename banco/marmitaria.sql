@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `marmitaria` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `marmitaria`;
 -- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: marmitaria
@@ -150,8 +152,9 @@ CREATE TABLE `usuario` (
   `tipo_usuario` enum('Administrador','Cliente') DEFAULT NULL,
   `status` enum('Ativo','Inativo') DEFAULT NULL,
   PRIMARY KEY (`id_usuario`),
-  UNIQUE KEY `cpf` (`cpf`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `cpf` (`cpf`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,7 +163,6 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'123','1@gmail.com','123','123','123','2025-08-31','Cliente','Ativo'),(2,'teste','teste@gmail.com','123','19 99999 9999','9999999999','2025-08-31',NULL,'Ativo'),(3,'teste','teste@gmail.com','123','123','1234','2025-08-04',NULL,'Ativo'),(4,'teste1','jorge@gmail.com','1','123','54','2025-09-07',NULL,'Ativo'),(6,'teste1','jorge@gmail.com','1','123','549','2025-09-07',NULL,'Ativo'),(7,'teste1','jorge@gmail.com','1','123','5498','2025-09-07',NULL,'Ativo');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -173,4 +175,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-03 14:59:34
+-- Dump completed on 2025-09-05 18:00:42
