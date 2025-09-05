@@ -1,5 +1,6 @@
 <?php 
     include("../padrao/header.php");
+    
 ?>
 
 
@@ -8,6 +9,7 @@
         <form action="acoes.php" method="post">
 
             <input type="hidden" name="acao" value="cadastrar">
+            <input type="hidden" name="entrada" value="usuario">
 
             <div class="mb-3">
                 <label class="form-label">Nome</label>
@@ -47,7 +49,5 @@
 </div>
 
 <?php 
-    
     include('..\padrao\footer.php');
-
 ?>
