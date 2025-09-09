@@ -14,6 +14,7 @@
                     $telefone = $_POST["telefone"];
                     $cpf = $_POST["cpf"];
                     $dt_nascimento = $_POST["dt_nascimento"];
+                    $tipo_usuario = $_POST["tipo_usuario"];
                     $status = $_POST["status"];
 
                     
@@ -26,9 +27,10 @@
                         $_SESSION["telefone"] = $telefone;
                         $_SESSION["cpf"] = $cpf;
                         $_SESSION["dt_nascimento"] = $dt_nascimento;
+                        $_SESSION["tipo_usuario"] = $tipo_usuario;
                         $_SESSION["status"] = $status; 
 
-                        echo "<script>location.href='endereco.php';</script>";
+                        echo "<script>location.href='user/registro/endereco.php';</script>";
                     
                         
 
@@ -73,7 +75,7 @@
                     } else {
                         echo "<script>alert('Não foi possível cadastrar');</script>";
 
-                        echo "<script>location.href='endereco.php';</script>";
+                        echo "<script>location.href='user/registro/endereco.php';</script>";
                     }; 
                 break;
 
@@ -86,6 +88,7 @@
                     $telefone = $_SESSION["telefone"];
                     $cpf = $_SESSION["cpf"];
                     $dt_nascimento = $_SESSION["dt_nascimento"];
+                    $tipo_usuario = $_SESSION["tipo_usuario"];
                     $status = $_SESSION["status"];
 
                     $endereco = $_SESSION["endereco"];
@@ -97,7 +100,7 @@
                     $cep = $_SESSION["cep"];
 
 
-                    if (!empty($endereco) && !empty($bairro) && !empty($cidade) && !empty($estado) && !empty($num_casa) && !empty($cep) && !empty($nome_usuario) && !empty($email) && !empty($senha) && !empty($telefone) && !empty($cpf) && !empty($dt_nascimento) && !empty($status)) {
+                    if (!empty($endereco) && !empty($bairro) && !empty($cidade) && !empty($estado) && !empty($num_casa) && !empty($cep) && !empty($nome_usuario) && !empty($email) && !empty($senha) && !empty($telefone) && !empty($cpf) && !empty($dt_nascimento) && !empty($tipo_usuario) && !empty($status)) {
                         $sql = "INSERT INTO usuario (
                             `nome_usuario`,
                             `email`,
@@ -108,7 +111,7 @@
                             `tipo_usuario`,
                             `status`)
 
-                            VALUES ('{$nome_usuario}', '{$email}', '{$senha}', '{$telefone}', '{$cpf}', '{$dt_nascimento}', default, '{$status}')";
+                            VALUES ('{$nome_usuario}', '{$email}', '{$senha}', '{$telefone}', '{$cpf}', '{$dt_nascimento}', '{$tipo_usuario}', '{$status}')";
 
                         $res = $conn->query($sql);
                         $id_usuario = $conn-> lastInsertId();
@@ -180,20 +183,15 @@
                         $tipo_usuario = $tipoUser -> tipo_usuario;
                         if ($tipo_usuario == 'Cliente') {
                             $_SESSION["email_login"] = $email_login;
-                            $_SESSION["senha_login"] = $senha_login;
-                            $_SESSION["tipo_usuario"] = $tipo_usuario;
-                            echo "<script>location.href='home.php';</script>";
+                            echo "<script>location.href='home/home.php';</script>";
                         } else {
                             $_SESSION["email_login"] = $email_login;
-                            $_SESSION["senha_login"] = $senha_login;
-                            $_SESSION["tipo_usuario"] = $tipo_usuario;
                             echo "<script>location.href='home/home-adm.php';</script>";
                         }
 
 
                     } else {
-                        unset($_SESSION["email_login"]);
-                        unset($_SESSION["senha_login"]);
+                        
 
                         echo "<script>alert('Não foi possível entrar');</script>";
                         echo "<script>location.href='../index.php';</script>";
@@ -203,9 +201,6 @@
                     echo "<script>alert('Não foi possível entrar');</script>";
                     echo "<script>location.href='../index.php';</script>";
                 }
-
-                 
-
             break;
         
         default:

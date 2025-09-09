@@ -5,7 +5,7 @@
 
 <div class="card shadow p-4 position-absolute top-50 start-50 translate-middle" style="width: 30rem;">
     <h3 class="text-center mb-3">Cadastro</h3>
-        <form action="acoes.php" method="post">
+        <form action="../../acoes.php" method="post">
 
             <input type="hidden" name="acao" value="cadastrar">
             <input type="hidden" name="entrada" value="usuario">
@@ -41,6 +41,7 @@
             </div>
 
             <input type="hidden" name="status" value="Ativo">
+            <input type="hidden" name="tipo_usuario" value="Cliente">
 
             <button type="submit" class="btn btn-primary w-100">Criar</button>
         </form>

@@ -1,3 +1,7 @@
+
+
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
 
@@ -9,14 +13,13 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="home.php">Home</a>
-        <a class="nav-link" href="#">Listagem</a>
+        <a class="nav-link active" aria-current="page" href="../home/home-adm.php">Home</a>
+        <a class="nav-link" href="../user/adm/listagem-clientes.php">Listagem</a>
         <a class="nav-link" href="#">Pricing</a>
         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
       </div>
 
-      <a href="../../index.php" class="btn btn-danger ms-auto" onclick="<?php unset($_SESSION["email_login"]); unset($_SESSION["senha_login"]); unset($_SESSION["tipo_usuario"]); ?>">Sair</a>
-
+      <a href="../user/registro/logout.php" class="btn btn-danger ms-auto" onclick="<?php echo $_SESSION["email_login"]; ?>">Sair</a>
     </div>
   </div>
 </nav>
