@@ -2,11 +2,7 @@
   include("../../../padrao/header.php");
   include("../../../padrao/nav.php");
   include("../../../padrao/conexao.php");
-
-    $sql = "SELECT id_usuario, nome_usuario, email, telefone, cpf, dt_nascimento, tipo_usuario, status FROM usuario";
-    $res = $conn -> query($sql);
-
-    $lista = $res -> fetchAll(PDO::FETCH_ASSOC);
+  include("select/cliente.php");
 ?>
 
   <div class="container py-5">
@@ -15,6 +11,9 @@
         <h4 class="mb-0">📋 Listagem de Clientes</h4>
         <button class="btn btn-light btn-sm"></button>
       </div>
+      <?php 
+        if ($row > 0) {
+      ?>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-hover align-middle">
@@ -41,19 +40,26 @@
                 <td><?= $user['dt_nascimento'] ?></td>
                 <td><?= $user['status'] ?></td>
                 <td>
-                  <form action="acoes-listar.php" method="post">
-                    <input type="hidden" name="acao" value="editar">
-                    <input type="hidden" name="id_user" value="<?php $user['id_usuario']?>">
+                  <form action="listEndereco.php" method="post" class="alinhamento">
+                    <input type="hidden" name="id_user" value="<?= $envia = $user['id_usuario'];?>">
                     <button type="submit" class="btn btn-sm btn-primary">Mostrar</button>
                   </form>
                 </td>
                 <td>
-                  <a class="btn btn-sm btn-success" href="../editar.php">Editar</a>
+                  <form action="editar.php" method="post">
+                    <input type="hidden" name="acao" value="test-id">
+                    <input type="hidden" name="id_user_editar" value="<?= $envia = $user['id_usuario'];?>">
+                    <button type="submit" class="btn btn-sm btn-success">Editar</button>
+                  </form>
                   <a class="btn btn-sm btn-danger" href="">Excluir</a> <br>
-                  <a class="btn btn-sm btn-primary mt-1" href="../editar.php">Lista de Pedidos</a>
+                  <a class="btn btn-sm btn-primary mt-1" href="">Lista de Pedidos</a>
                 </td>
               </tr>
-              <?php }?>
+              <?php 
+              }} else {
+                  echo "<p>Não tem clientes cadastrados</p>";
+                }
+                ?>
             </tbody>
           </table>
         </div>
@@ -64,8 +70,6 @@
     </div>
   </div>
 
-
 <?php 
   include("../../../padrao/footer.php");
-  
 ?>
