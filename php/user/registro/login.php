@@ -1,10 +1,3 @@
-<?php 
-    session_start();
-
-    print_r($_SESSION);
-    
-?>
-
 <div class="d-flex justify-content-center align-items-center vh-100">
 
     <div class="card shadow p-4" style="width: 22rem;">

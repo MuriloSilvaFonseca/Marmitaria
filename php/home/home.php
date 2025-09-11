@@ -1,5 +1,5 @@
 <?php 
-    include('../padrao/header.php');
+    include('../../padrao/header.php');
 
     session_start();
     if (!isset($_SESSION["email_login"]) == true  && !isset($_SESSION["senha_login"]) == true ) {
@@ -9,11 +9,11 @@
     } else {
 
     }
-    include("../padrao/nav.php");
+    include("../../padrao/nav.php");
 
 ?>
-    
+    <h1>Cliente</h1>
 
 <?php 
-    include('../padrao/footer.php')
+    include('../../padrao/footer.php')
 ?>

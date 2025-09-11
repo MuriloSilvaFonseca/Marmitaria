@@ -1,8 +1,8 @@
 <?php 
-  include("../../../padrao/header.php");
-  include("../../../padrao/nav.php");
-  include("../../../padrao/conexao.php");
-  include("select/cliente.php");
+  include("../../../../padrao/header.php");
+  include("../../../../padrao/nav.php");
+  include("../../../../padrao/conexao.php");
+  include("../select/cliente.php");
 ?>
 
   <div class="container py-5">
@@ -46,13 +46,35 @@
                   </form>
                 </td>
                 <td>
-                  <form action="editar.php" method="post">
-                    <input type="hidden" name="acao" value="test-id">
-                    <input type="hidden" name="id_user_editar" value="<?= $envia = $user['id_usuario'];?>">
-                    <button type="submit" class="btn btn-sm btn-success">Editar</button>
-                  </form>
-                  <a class="btn btn-sm btn-danger" href="">Excluir</a> <br>
-                  <a class="btn btn-sm btn-primary mt-1" href="">Lista de Pedidos</a>
+                  <div class="d-flex flex-wrap gap-1">
+
+                    <form action="editar-cliente.php" method="post">
+                      <input type="hidden" name="id_user_editar" value="<?= $user['id_usuario']; ?>">
+                      <button type="submit" class="btn btn-sm btn-success">Editar</button>
+                    </form>
+
+                    <form action="../delete/lista-clientes.php" method="post">
+                      <input type="hidden" name="id_user_excluir" value="<?= $user['id_usuario']; ?>">
+                      <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                    </form>
+
+                    <form action="../update/status.php" method="post">
+                      <input type="hidden" name="id_user_status" value="<?= $user['id_usuario']; ?>">
+                      <input type="hidden" name="condicao_status" value="<?= $user['status']; ?>">
+                      <button type="submit" class="btn btn-sm btn-warning">
+                        <?php 
+                          if ($user['status'] == 'Ativo') {
+                            echo 'Desativar';
+                          } else {
+                            echo 'Ativar';
+                          }
+                        ?>
+                      </button>
+                    </form>
+
+                    <a class="btn btn-sm btn-info" href="">Lista de Pedidos</a>
+                  </div>
+
                 </td>
               </tr>
               <?php 
@@ -71,5 +93,5 @@
   </div>
 
 <?php 
-  include("../../../padrao/footer.php");
+  include("../../../../padrao/footer.php");
 ?>

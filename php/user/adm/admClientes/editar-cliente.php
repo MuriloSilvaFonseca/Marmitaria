@@ -1,12 +1,13 @@
 <?php 
-    include("../../../padrao/header.php");
-    include("../../../padrao/conexao.php");
-    include("./update/cliente.php");
+    include("../../../../padrao/header.php");
+    include("../../../../padrao/nav.php");
+    include("../../../../padrao/conexao.php");
+    include(".././update/test-id.php");
 ?>
 
-<div class="card shadow p-4 position-absolute top-50 start-50 translate-middle" style="width: 30rem;">
+<div class="card shadow container-fluid mt-5 d-flex justify-content-center" style="width: 30rem;">
     <h3 class="text-center mb-3">Editar</h3>
-        <form action="update/cliente.php" method="post">
+        <form action="../update/cliente.php" method="post">
 
             <input type="hidden" name="acao" value="editar">
 
@@ -40,5 +41,5 @@
 </div>
 
 <?php 
-    include('../../../padrao/footer.php');
+    include('../../../../padrao/footer.php');
 ?>
