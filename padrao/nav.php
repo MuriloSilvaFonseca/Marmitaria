@@ -15,7 +15,7 @@
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="../home/home-adm.php">Home</a>
         <a class="nav-link" href="../user/adm/admClientes/listagem-clientes.php">Listagem</a>
-        <a class="nav-link" href="">Produto</a>
+        <a class="nav-link" href="../user/adm/produto/cadProduto.php">Produto</a>
         <a class="nav-link disabled" aria-disabled="true">Disabled</a>
       </div>
 

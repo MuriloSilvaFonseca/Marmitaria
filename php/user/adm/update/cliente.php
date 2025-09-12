@@ -22,11 +22,11 @@
 
         echo "<script>alert('Editado com sucesso');</script>";
 
-        echo "<script>location.href='../listagem-clientes.php';</script>";
+        echo "<script>location.href='../admClientes/listagem-clientes.php';</script>";
         
     } else {
         echo "alert('Não foi possível Editar')";
 
-        echo "<script>location.href='../editar';</script>";
+        echo "<script>location.href='../admClientes/editar';</script>";
     }
 ?>
