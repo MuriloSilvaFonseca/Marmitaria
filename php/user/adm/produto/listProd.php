@@ -9,7 +9,7 @@
     <div class="card shadow-lg">
       <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
         <h4 class="mb-0">Listagem de Produtos</h4>
-        <button class="btn btn-light btn-sm"></button>
+        <button class="btn btn-light btn-sm" onclick="window.location.href='cadProduto.php'">Cadastrar Produto</button>
       </div>
       <?php 
         if ($row > 0) {
@@ -39,24 +39,24 @@
                 <td><?= $user['valor_prod'] ?></td> 
                 <td><?= $user['categoria'] ?></td>
                 <td><?= $user['qtd_est'] ?></td>
-                <td><?= $user['dt_aquisicao'] ?></td>
-                <td><?= $user['dt_venc'] ?></td>
+                <td><?= $dataBR = date("d/m/Y", strtotime($user['dt_aquisicao'])) ?></td>
+                <td><?= $dataBR = date("d/m/Y", strtotime($user['dt_venc'])) ?></td>
                 <td><?= $user['status'] ?></td>
 
                 <td>
                   <div class="d-flex flex-wrap gap-1">
 
-                    <form action="editar-cliente.php" method="post">
-                      <input type="hidden" name="id_user_editar" value="<?= $user['id_produto']; ?>">
+                    <form action="editarProd.php" method="post">
+                      <input type="hidden" name="id_prod_editar" value="<?= $user['id_produto']; ?>">
                       <button type="submit" class="btn btn-sm btn-success">Editar</button>
                     </form>
 
-                    <form action="../update/status.php" method="post">
-                      <input type="hidden" name="id_user_status" value="<?= $user['id_produto']; ?>">
+                    <form action="../update/statusProd.php" method="post">
+                      <input type="hidden" name="id_produto" value="<?= $user['id_produto']; ?>">
                       <input type="hidden" name="condicao_status" value="<?= $user['status']; ?>">
                       <button type="submit" class="btn btn-sm btn-warning">
                         <?php 
-                          if ($user['status'] == 'Ativo') {
+                          if ($user['status'] == 'Disponível') {
                             echo 'Desativar';
                           } else {
                             echo 'Ativar';
@@ -68,9 +68,16 @@
 
                 </td>
               </tr>
+
+              <tr>
+                <td colspan="9" style="padding-bottom: 20px;">
+                  <b>Descrição:</b><br>
+                  <?= $user['descricao'] ?>
+                </td>
+              </tr>
               <?php 
               }} else {
-                  echo "<p>Não tem clientes cadastrados</p>";
+                  echo "<p class='p-3 mb-0'><b>Não tem clientes cadastrados</b></p>";
                 }
                 ?>
             </tbody>

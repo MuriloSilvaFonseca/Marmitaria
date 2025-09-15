@@ -43,12 +43,36 @@
             </div>
 
             <div class="mb-3">
-                <label for="cidade" class="form-label">Estado</label>
-                    <select class="form-select" name="estado" required>
-                        <option selected>Selecione...</option>
-                        <option value="sp">São Paulo</option>
-                        <option value="rj">Rio de Janeiro</option>
-                        <option value="bh">Belo Horizonte</option>
+                <label for="estado" class="form-label">Estado</label>
+                    <select class="form-select" name="estado" id="estado" required>
+                        <option value="" selected>Selecione...</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
                     </select>
             </div>
 
@@ -58,14 +82,18 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">CEP</label>
-                <input type="text" name="cep" class="form-control" placeholder="13872-777" required>
+                <label for="cep" class="form-label">CEP</label>
+                <input type="text" id="cep" name="cep" class="form-control" placeholder="00000-000" required>
             </div>
 
             <button type="submit" class="btn btn-primary w-100">Criar</button>
         </form>
 </div>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <script>
+        $('#cep').mask('00000-000');
+    </script>
 <?php 
     include("../../../padrao/footer.php");
 ?>

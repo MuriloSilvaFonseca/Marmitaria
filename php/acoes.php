@@ -151,6 +151,8 @@
                                                  
                             echo "<script>location.href='../index.php';</script>";
 
+                            echo "<script>alert('Cadastrado com Sucesso');</script>";
+
                         } else {
                             echo "<script>alert('Não foi possível cadastrar');</script>";
 

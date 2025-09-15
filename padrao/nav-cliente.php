@@ -1,7 +1,3 @@
-
-
-
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
 
@@ -13,10 +9,10 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="/Marmitaria/php/home/home-adm.php">Home</a>
-        <a class="nav-link" href="/Marmitaria/php/user/adm/admClientes/listagem-clientes.php">Clientes</a>
-        <a class="nav-link" href="/Marmitaria/php/user/adm/produto/listProd.php">Produto</a>
-        <a class="nav-link" aria-disabled="true">Pedidos</a>
+        <a class="nav-link active" aria-current="page" href="/Marmitaria/php/home/home.php">Home</a>
+        <a class="nav-link" href="/Marmitaria/php/user/cliente/pedido/pedir.php">Pedir</a>
+        <a class="nav-link" href="#">Historico de Pedidos</a>
+        <a class="nav-link" href="#">Perfil</a>
       </div>
 
       <a href="/Marmitaria/php/user/registro/logout.php" class="btn btn-danger ms-auto" onclick="<?php echo $_SESSION["email_login"]; ?>">Sair</a>

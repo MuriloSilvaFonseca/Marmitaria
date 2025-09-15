@@ -37,10 +37,10 @@
                 <td><?= $user['nome_usuario'] ?></td>
                 <td><?= $user['email'] ?> <br> <?= $user['telefone'] ?></td>
                 <td><?= $user['cpf'] ?></td>
-                <td><?= $user['dt_nascimento'] ?></td>
+                <td><?= $dataBR = date("d/m/Y", strtotime($user['dt_nascimento'])) ?></td>
                 <td><?= $user['status'] ?></td>
                 <td>
-                  <form action="listEndereco.php" method="post" class="alinhamento">
+                  <form action="listEndereco.php" method="post" class="mb-0">
                     <input type="hidden" name="id_user" value="<?= $envia = $user['id_usuario'];?>">
                     <button type="submit" class="btn btn-sm btn-primary">Mostrar</button>
                   </form>
@@ -48,38 +48,40 @@
                 <td>
                   <div class="d-flex flex-wrap gap-1">
 
-                    <form action="editar-cliente.php" method="post">
-                      <input type="hidden" name="id_user_editar" value="<?= $user['id_usuario']; ?>">
-                      <button type="submit" class="btn btn-sm btn-success">Editar</button>
-                    </form>
+                    <div>
+                      <form action="editar-cliente.php" method="post" class="mb-1">
+                        <input type="hidden" name="id_user_editar" value="<?= $user['id_usuario']; ?>">
+                        <button type="submit" class="btn btn-sm btn-success ">Editar</button>
+                      </form>
+                      <form action="../delete/lista-clientes.php" method="post" class="mb-1">
+                        <input type="hidden" name="id_user_excluir" value="<?= $user['id_usuario']; ?>">
+                        <button type="submit" class="btn btn-sm btn-danger ">Excluir</button>
+                      </form>
+                    </div>
 
-                    <form action="../delete/lista-clientes.php" method="post">
-                      <input type="hidden" name="id_user_excluir" value="<?= $user['id_usuario']; ?>">
-                      <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
-                    </form>
-
-                    <form action="../update/status.php" method="post">
-                      <input type="hidden" name="id_user_status" value="<?= $user['id_usuario']; ?>">
-                      <input type="hidden" name="condicao_status" value="<?= $user['status']; ?>">
-                      <button type="submit" class="btn btn-sm btn-warning">
-                        <?php 
-                          if ($user['status'] == 'Ativo') {
-                            echo 'Desativar';
-                          } else {
-                            echo 'Ativar';
-                          }
-                        ?>
-                      </button>
-                    </form>
-
-                    <a class="btn btn-sm btn-info" href="">Lista de Pedidos</a>
+                    <div>
+                      <form action="../update/status.php" method="post" class="mb-1">
+                        <input type="hidden" name="id_user_status" value="<?= $user['id_usuario']; ?>">
+                        <input type="hidden" name="condicao_status" value="<?= $user['status']; ?>">
+                        <button type="submit" class="btn btn-sm btn-warning">
+                          <?php
+                            if ($user['status'] == 'Ativo') {
+                              echo 'Desativar';
+                            } else {
+                              echo 'Ativar';
+                            }
+                          ?>
+                        </button>
+                      </form>
+                      <a class="btn btn-sm btn-info" href="">Lista de Pedidos</a>
+                    </div>
                   </div>
 
                 </td>
               </tr>
               <?php 
               }} else {
-                  echo "<p>Não tem clientes cadastrados</p>";
+                  echo "<p class='p-3 mb-0'>Não tem clientes cadastrados</p>";
                 }
                 ?>
             </tbody>

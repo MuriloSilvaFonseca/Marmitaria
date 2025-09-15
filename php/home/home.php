@@ -9,7 +9,7 @@
     } else {
 
     }
-    include("../../padrao/nav.php");
+    include("../../padrao/nav-cliente.php");
 
 ?>
     <h1>Cliente</h1>
