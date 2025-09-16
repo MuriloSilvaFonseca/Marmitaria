@@ -12,7 +12,7 @@
         <a class="nav-link active" aria-current="page" href="/Marmitaria/php/home/home.php">Home</a>
         <a class="nav-link" href="/Marmitaria/php/user/cliente/pedido/pedir.php">Pedir</a>
         <a class="nav-link" href="#">Historico de Pedidos</a>
-        <a class="nav-link" href="#">Perfil</a>
+        <a class="nav-link" href="/Marmitaria/php/user/cliente/perfil/Vperfil.php">Perfil</a>
       </div>
 
       <a href="/Marmitaria/php/user/registro/logout.php" class="btn btn-danger ms-auto" onclick="<?php echo $_SESSION["email_login"]; ?>">Sair</a>
