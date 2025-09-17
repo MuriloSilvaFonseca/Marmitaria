@@ -174,7 +174,7 @@
                     $email_login = $_REQUEST["email_login"];
                     $senha_login = $_REQUEST["senha_login"];
 
-                    $sql = "SELECT email, senha, tipo_usuario FROM usuario 
+                    $sql = "SELECT id_usuario ,email, senha, tipo_usuario FROM usuario 
                             WHERE email = '$email_login' AND senha = '$senha_login'";
                     $res = $conn -> query($sql);
 
@@ -183,12 +183,19 @@
                     if ($contRow > 0) {
                         $tipoUser = $res -> fetchObject();
                         $tipo_usuario = $tipoUser -> tipo_usuario;
+
+                        $id_user_login = $tipoUser -> id_usuario;
+
                         if ($tipo_usuario == 'Cliente') {
                             $_SESSION["email_login"] = $email_login;
                             echo "<script>location.href='home/home.php';</script>";
+
+                            $_SESSION["id_user_login"] = $id_user_login;
                         } else {
                             $_SESSION["email_login"] = $email_login;
                             echo "<script>location.href='home/home-adm.php';</script>";
+
+                            $_SESSION["id_user_login"] = $id_user_login;
                         }
 
 
