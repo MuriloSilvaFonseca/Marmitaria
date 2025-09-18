@@ -17,10 +17,7 @@
         ?>
           <div class="col-12 col-md-6">
             <div class="card h-100">
-              <div class="card-body d-flex flex-column">
-
-                <form action="<?=$_SERVER["PHP_SELF"]?>">
-                    <input type="hidden" name="id_produto_pedido" value="<?= $prod['id_produto']?>">
+              <div class="card-body d-flex flex-column">   
                     <h5 class="card-title"><?= $prod['nome_produto']?></h5>
                     <p class="card-text flex-grow-1"><?= $prod['descricao']?></p>
                     <p class="mb-0 p-2"><?= $prod['categoria']?></p>
@@ -30,8 +27,7 @@
                     <span class="input-group-text">Qtd</span>
                     <input type="number" class="form-control" value="1" min="1">
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Adicionar ao Carrinho</button>
-                </form>
+                    <button type="button" class="btn btn-primary w-100" data-id="<?=$prod['id_produto']?>">Adicionar ao Carrinho</button>                
               </div>
             </div>
           </div>
@@ -51,7 +47,7 @@
                 <h5 class="mb-0">Resumo do Pedido</h5>
             </div>
         <div class="card-body">
-            <form action="../insert/pedido.php" method="post">
+            <form action="carrinho.php" method="post">
                 <ul class="list-group mb-3" id="carrinho">
                     <li class="list-group-item text-center text-muted">Nenhum produto adicionado</li>
                 </ul>
@@ -94,9 +90,13 @@
             const li = document.createElement("li");
             li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
 
+            const idProduto = this.getAttribute("data-id");
+
             li.innerHTML = `
-                <input type='hidden' name='id_produto_carrinho' value='<?=$prod['id_produto']?>'>
-                <input type='hidden' name='qtd_prod' value='${qtd}'>
+                <input type='hidden' name='id_produto_carrinho[]' value='${idProduto}'>
+                <input type='hidden' name='nome_prod_carrinho[]' value='${nome}'>
+                <input type='hidden' name='qtd_prod[]' value='${qtd}'>
+                <input type='hidden' name='vlr_uni[]' value='${preco}'>
 
                 <span>${nome} x${qtd}</span>
                 <span>

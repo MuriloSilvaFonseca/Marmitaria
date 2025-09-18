@@ -178,6 +178,8 @@
                             WHERE email = '$email_login' AND senha = '$senha_login'";
                     $res = $conn -> query($sql);
 
+                    
+
                     $contRow = $res -> rowCount();
 
                     if ($contRow > 0) {
