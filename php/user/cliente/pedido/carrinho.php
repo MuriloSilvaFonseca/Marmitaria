@@ -14,9 +14,9 @@
         $pedido[] = [
             "id_prod_carrinho" => $id_prod_carrinho[$i],
             "nome_prod_carrinho" => $nome_prod_carrinho[$i],
-            "vlr_uni" => $vlr_uni[$i],
-            "qtd_prod" => $qtd_prod[$i],
-            "subTotal" => $qtd_prod[$i] * $vlr_uni[$i]
+            "vlr_uni" => floatval($vlr_uni[$i]),
+            "qtd_prod" => intval($qtd_prod[$i]),
+            "subTotal" => floatval($qtd_prod[$i]) * intval($vlr_uni[$i])
         ];
     }
 
@@ -30,7 +30,7 @@
             <h4 class="mb-0">Carrinho de Compras</h4>
         </div>
         <div class="card-body">
-
+            <form action="pedido.php" method="post">
             <div class="table-responsive mb-4">
                 <table class="table table-striped align-middle mb-0">
                     <thead class="table-dark">
@@ -48,10 +48,25 @@
                         ?>
 
                             <tr>
-                                <td><?=$info['nome_prod_carrinho']?></td>
-                                <td><?=$info['qtd_prod']?></td>
-                                <td>R$ <?=$info['vlr_uni']?></td>
-                                <td>R$ <?=$info['subTotal']?></td>
+                                <td>
+                                    <input type="hidden" name="id_prod_carrinho[]" value="<?=$info['id_prod_carrinho']?>">
+                                    <?=$info['nome_prod_carrinho']?>
+                                    <input type="hidden" name="nome_prod_carrinho[]" value="<?=$info['nome_prod_carrinho']?>">
+                                </td>
+                                <td>
+                                    <?=$info['qtd_prod']?>
+                                    <input type="hidden" name="qtd_prod[]" value="<?=$info['qtd_prod']?>">
+                                </td>
+
+                                <td>
+                                    R$ <?=$info['vlr_uni']?>
+                                    <input type="hidden" name="vlr_uni[]" value="<?=$info['vlr_uni']?>">
+                                </td>
+
+                                <td>
+                                    R$ <?=$info['subTotal']?>
+                                    
+                                </td>
                             </tr>
 
                         <?php       
@@ -59,6 +74,7 @@
                         ?>
     
                         <tr>
+                            <input type="hidden" name="total" value="<?=$total?>">
                             <td colspan="3" class="text-end fw-bold">Total:</td>
                             <td class="fw-bold">R$ <?=$total?></td>
                         </tr>
@@ -66,17 +82,26 @@
                 </table>
             </div>
 
-            <div class="mb-4">
-                <label for="pagamento" class="form-label fw-bold">Método de Pagamento</label>
-                <select id="pagamento" class="form-select">
-                    <option value="">Selecione</option>
-                    <option value="dinheiro">Dinheiro</option>
-                    <option value="cartao">Cartão de Crédito</option>
-                    <option value="pix">PIX</option>
-                </select>
-            </div>
-
-            <button class="btn btn-success w-100" onclick="confirmarPedido()">Confirmar Pedido</button>
+                <div class="mb-4">
+                    <label for="pagamento" class="form-label fw-bold">Método de Pagamento</label>
+                    <select id="pagamento" class="form-select" name="pagamento">
+                        <option value="">Selecione</option>
+                        <option value="dinheiro">Dinheiro</option>
+                        <option value="cartao">Cartão de Crédito</option>
+                        <option value="pix">PIX</option>
+                    </select>
+                </div>
+                 <div class="mb-4">
+                    <label for="entrega" class="form-label fw-bold">Método de Entrega</label>
+                    <select id="entrega" class="form-select" name="entrega">
+                        <option value="">Selecione</option>
+                        <option value="Retirada na Loja">Retirada na Loja</option>
+                        <option value="Delivery">Delivery</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success w-100" onclick="confirmarPedido()">Confirmar Pedido</button>
+                        
+            </form>
         </div>
     </div>
 </div>
@@ -84,11 +109,20 @@
 <script>
     function confirmarPedido() {
         const pagamento = document.getElementById('pagamento').value;
-        if (!pagamento) {
+        const entrega = document.getElementById('entrega').value;
+        if (!pagamento && !entrega) {
+            alert('Por favor, selecione um método de pagamento e um método de entrega.');
+            return
+        } else if (!pagamento) {
             alert('Por favor, selecione um método de pagamento.');
             return;
+        } else if (!entrega) {
+            alert('Por favor, selecione um método de entrega.');
+            return;
         }
-        alert('Pedido confirmado!\nMétodo de pagamento: ' + pagamento);
+
+
+        alert('Pedido confirmado!\nMétodo de pagamento: ' + pagamento ,'\nMétodo de entrega: ' + entrega);
     }
 </script>
 

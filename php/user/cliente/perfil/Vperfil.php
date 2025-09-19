@@ -19,7 +19,7 @@
           <div class="card-body">
                       <p><strong>Nome:</strong> <?=$user['nome_usuario']?></p>
                       <p><strong>E-mail:</strong> <?=$user['email']?></p>
-                      <p><strong>Senha:</strong> <?=$user['telefone']?></p>
+                      <p><strong>Senha:</strong> <?=$user['senha']?></p>
                       <p><strong>Telefone:</strong> <?=$user['telefone']?></p>
                       <p><strong>Data de Nascimento:</strong> <?=$user['dt_nascimento']?></p>
                       <p><strong>CPF:</strong> <?=$user['cpf']?></p>
