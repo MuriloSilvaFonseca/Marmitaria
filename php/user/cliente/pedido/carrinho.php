@@ -85,17 +85,22 @@
                     <label for="pagamento" class="form-label fw-bold">Método de Pagamento</label>
                     <select id="pagamento" class="form-select" name="pagamento" required>
                         <option value="dinheiro" selected>Dinheiro</option>
-                        <option value="cartao">Cartão de Crédito</option>
+                        <option value="cartaoDebito">Cartão de Débito</option>
+                        <option value="cartaoCredito">Cartão de Crédito</option>
                         <option value="pix">PIX</option>
                     </select>
                 </div>
+                
                  <div class="mb-4">
                     <label for="entrega" class="form-label fw-bold">Método de Entrega</label>
                     <select id="entrega" class="form-select" name="entrega" required>
-                        <option value="Retirada na Loja">Retirada na Loja</option>
+                        <option value="Retirada no Restaurante ">Retirada no Restaurante</option>
                         <option value="Delivery" selected>Delivery</option>
                     </select>
                 </div>
+
+                <input type="hidden" name="status" value="Não confirmado">
+
                 <button type="submit" class="btn btn-success w-100" onclick="confirmarPedido()">Confirmar Pedido</button>
                         
             </form>

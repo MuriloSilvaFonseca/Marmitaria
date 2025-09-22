@@ -11,7 +11,7 @@
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="/Marmitaria/php/home/home.php">Home</a>
         <a class="nav-link" href="/Marmitaria/php/user/cliente/pedido/pedir.php">Pedir</a>
-        <a class="nav-link" href="#">Historico de Pedidos</a>
+        <a class="nav-link" href="/Marmitaria/php/user/cliente/pedido/confPedido.php">Pedidos</a>
         <a class="nav-link" href="/Marmitaria/php/user/cliente/perfil/Vperfil.php">Perfil</a>
       </div>
 
