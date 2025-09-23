@@ -84,10 +84,10 @@
                 <div class="mb-4">
                     <label for="pagamento" class="form-label fw-bold">Método de Pagamento</label>
                     <select id="pagamento" class="form-select" name="pagamento" required>
-                        <option value="dinheiro" selected>Dinheiro</option>
-                        <option value="cartaoDebito">Cartão de Débito</option>
-                        <option value="cartaoCredito">Cartão de Crédito</option>
-                        <option value="pix">PIX</option>
+                        <option value="Dinheiro" selected>Dinheiro</option>
+                        <option value="Cartao de Débito">Cartão de Débito</option>
+                        <option value="Cartao de Crédito">Cartão de Crédito</option>
+                        <option value="PIX">PIX</option>
                     </select>
                 </div>
                 

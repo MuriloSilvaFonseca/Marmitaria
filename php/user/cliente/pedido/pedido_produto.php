@@ -11,7 +11,7 @@
 
     $capDatetime = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
     $data_pedido = $capDatetime->format('Y-m-d H:i:s');
-    
+
     $pedido = "INSERT INTO pedido (
                             `id_pedido`,
                             `id_usuario`,
@@ -47,10 +47,8 @@
 
         $resProd_pedido = $conn -> query($produto_pedido);
     }
-    
 
-    
-    exit;
-
-    
+    if($resProd_pedido == true) {
+        echo "<script>location.href='confPedido.php'</script>";
+    }
 ?>
