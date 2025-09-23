@@ -1,7 +1,7 @@
 <?php
     $id_usuario = $_SESSION['id_user_login'];
 
-    $sql = "SELECT 
+    $ultLinSql = "SELECT 
                 p.id_pedido,
                 p.tipo_pag,
                 p.entrega,
@@ -21,5 +21,5 @@
             WHERE p.id_usuario = '$id_usuario'
             ORDER BY p.id_pedido DESC";
 
-    $res = $conn->query($sql);
+    $ultLinRes = $conn->query($sql);
 ?>
