@@ -1,7 +1,4 @@
 <?php
-    $id_usuario = $_SESSION['id_user_login'];
-
-    $sql = $id_usuario = $_SESSION['id_user_login'];
 
 $sql = "SELECT 
         p.id_pedido,
@@ -19,7 +16,7 @@ $sql = "SELECT
         ON p.id_pedido = pp.id_pedido
     INNER JOIN produto prd 
         ON pp.id_produto = prd.id_produto
-    WHERE p.id_usuario = '$id_usuario'
+    WHERE p.status = 'Não confirmado'
     ORDER BY p.id_pedido DESC
 ";
 

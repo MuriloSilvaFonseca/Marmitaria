@@ -73,7 +73,11 @@
                           ?>
                         </button>
                       </form>
-                      <a class="btn btn-sm btn-info" href="">Lista de Pedidos</a>
+                      
+                      <form action="../pedidos/historico.php" method="post" class="mb-1">
+                        <input type="hidden" name="id_user_pedidos" value="<?= $user['id_usuario']; ?>">
+                        <button type="submit" class="btn btn-sm btn-info">Pedidos</button>
+                      </form>  
                     </div>
                   </div>
 

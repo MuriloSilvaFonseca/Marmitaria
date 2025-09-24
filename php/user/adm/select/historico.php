@@ -1,7 +1,5 @@
 <?php
-    $id_usuario = $_SESSION['id_user_login'];
-
-    $sql = $id_usuario = $_SESSION['id_user_login'];
+    $id_usuario = $_REQUEST['id_user_pedidos'];
 
 $sql = "SELECT 
         p.id_pedido,

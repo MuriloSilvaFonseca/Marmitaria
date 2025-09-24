@@ -20,11 +20,12 @@
                             `desconto`,
                             `tipo_pag`,
                             `entrega`,
-                            `data_pedido`
+                            `data_pedido`,
+                            `motivo`
                             )
 
             VALUES ( 
-            default, '{$id_usuario}', '{$status}', '{$total}', default, '{$tipo_pag}', '{$entrega}', '{$data_pedido}')";
+            default, '{$id_usuario}', '{$status}', '{$total}', default, '{$tipo_pag}', '{$entrega}', '{$data_pedido}', NULL)";
 
     $resPedido = $conn -> query($pedido);
 

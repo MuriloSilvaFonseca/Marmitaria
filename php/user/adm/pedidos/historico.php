@@ -1,13 +1,11 @@
-<?php
-session_start();
-include("../../../../padrao/header.php");
-include("../../../../padrao/conexao.php");
-include("../../../../padrao/nav-cliente.php");
-include("../select/pedido.php");
-
+<?php 
+    include("../../../../padrao/header.php");
+    include("../../../../padrao/conexao.php");
+    include("../../../../padrao/nav.php");
+    include("../select/historico.php");
 ?>
 
-<div class="container my-4">
+    <div class="container my-4">
     <?php if (empty($pedidos)) { ?>
         <div class="alert alert-info">Você ainda não possui pedidos.</div>
     <?php } else { ?>
@@ -68,15 +66,12 @@ include("../select/pedido.php");
                             </tbody>
                         </table>
                     </div>
-
-                    <div class="text-end mt-3">
-                        <button class="btn btn-danger">Cancelar Pedido</button>
-                        <button class="btn btn-success ms-2">Confirmar Recebimento</button>
-                    </div>
                 </div>
             </div>
         <?php } ?>
     <?php } ?>
 </div>
 
-<?php include("../../../../padrao/footer.php"); ?>
+<?php 
+    include("../../../../padrao/footer.php");
+?>
