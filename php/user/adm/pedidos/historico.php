@@ -7,7 +7,7 @@
 
     <div class="container my-4">
     <?php if (empty($pedidos)) { ?>
-        <div class="alert alert-info">Você ainda não possui pedidos.</div>
+        <div class="alert alert-info">O cliente não possui pedidos.</div>
     <?php } else { ?>
         <?php foreach ($pedidos as $id => $pedido){ ?>
             <div class="card shadow-sm mb-4">
