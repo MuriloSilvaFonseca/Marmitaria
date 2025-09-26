@@ -16,7 +16,17 @@
                         <div>
                             <h5 class="mb-0">Pedido #<?= $id ?></h5>
                             <small>Status:
-                                <span class="badge bg-warning">
+                                <?php 
+                                    if ($pedido['status'] == 'Em andamento') {
+                                        echo "<span class='badge bg-warning'>";
+                                    } elseif ($pedido['status'] == 'Não confirmado') {
+                                        echo "<span class='badge bg-secondary'>";
+                                    } elseif ($pedido['status'] == 'Negado' || $pedido['status'] == 'Cancelado') {
+                                        echo "<span class='badge bg-danger'>";
+                                    } elseif ($pedido['status'] == 'Finalizado') {
+                                        echo "<span class='badge bg-success'>";
+                                    }
+                                ?>
                                     <?= $pedido['status'] ?>
                                 </span>
                             </small>

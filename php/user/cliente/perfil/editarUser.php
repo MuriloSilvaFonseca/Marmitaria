@@ -43,7 +43,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">CPF</label>
-                    <input type="text" name="cpf" class="form-control" id="cpf" value="<?= $user['cpf']?>">
+                    <input type="text" name="cpf" class="form-control" id="cpf" value="<?= $user['cpf']?>" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"  required>
                 </div>
 
                 <div class="mb-0 p-2 pt-0">

@@ -14,12 +14,10 @@
 
     $logado = $_SESSION["email_login"];
        
-
     include("../../padrao/nav.php");
     
 ?>
 
-<h1>ADM</h1>
 
 <?php 
     include('../../padrao/footer.php')

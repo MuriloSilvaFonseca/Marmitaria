@@ -15,16 +15,20 @@
     <!-- MENU DE STATUS -->
     <ul class="nav nav-tabs mb-4 justify-content-center">
         <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="tab" href="#naoConfirmados">Não confirmados</a>
+            <a class="nav-link active text-secundary" data-bs-toggle="tab" href="#naoConfirmados">Não confirmados</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#emAndamento">Em andamento</a>
+            <a class="nav-link text-warning" data-bs-toggle="tab" href="#emAndamento">Em andamento</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#finalizados">Finalizados</a>
+            <a class="nav-link text-success" data-bs-toggle="tab" href="#finalizados">Finalizados</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#negados">Negados</a>
+            <a class="nav-link text-danger" data-bs-toggle="tab" href="#negados">Negados</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-danger" data-bs-toggle="tab" href="#cancelados">Cancelados</a>
         </li>
     </ul>
 
@@ -294,6 +298,72 @@
                     <div class="text-start mt-3">
                         <h5>Motivo</h5>
                         <p><?= $pediNegado['motivo']?></p>
+                    </div>     
+
+                </div>
+            </div>
+                    <?php }?>
+            <?php }?> 
+        </div>
+
+        <!-- Cancelados -->
+
+        <div class="tab-pane " id="cancelados">
+            <h4 class="mb-3 text-center text-danger">Pedidos Cancelados</h4>
+            
+            <?php if (empty($pedsCancelado)) {?>
+                <div class="alert alert-info">Não possui pedidos cancelados</div>
+
+            <?php } else {
+                foreach ($pedsCancelado as $idCan => $pediCancelado) {?>
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-danger text-white">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="mb-0">Pedido #<?= $idCan ?></h5>
+                        <h5 class="">Cliente: <?= $pediCancelado['nome_usuario']?></h5>
+                    </div>
+                    <small>Status: <span class="badge bg-danger"><?= $pediCancelado['status'] ?></span></small>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4"><strong>Pagamento:</strong> <?= $rowCan['tipo_pag']?></div>
+                        <div class="col-md-4"><strong>Entrega:</strong> <?= $pediCancelado['entrega'] ?></div>
+                        <div class="col-md-4"><strong>Data:</strong> <?= date('d/m/Y H:i', strtotime($pediCancelado['data_pedido'])) ?> </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Produto</th>
+                                    <th>Qtd</th>
+                                    <th>Unit.</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($pediCancelado['produtos'] as $prodCan){ ?>
+                                <tr>
+                                    <td><?= $prodCan['nome'] ?></td>
+                                    <td><?= $prodCan['qtd'] ?></td>
+                                    <td>R$ <?= number_format($prodCan['valor'], 2, ',', '.') ?></td>
+                                    <td>R$ <?= number_format($prodCan['qtd'] * $prodCan['valor'], 2, ',', '.') ?></td>
+                                </tr>
+                            </tbody>
+                            <?php } ?>
+                            <tfoot>
+
+                                <tr>
+                                    <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                                    <td><strong>R$ <?= number_format($pediCancelado['total'], 2, ',', '.') ?></strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <div class="text-start mt-3">
+                        <h5>Motivo</h5>
+                        <p><?= $pediCancelado['motivo']?></p>
                     </div>     
 
                 </div>

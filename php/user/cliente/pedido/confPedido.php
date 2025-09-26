@@ -18,7 +18,18 @@ include("../select/pedido.php");
                         <div>
                             <h5 class="mb-0">Pedido #<?= $id ?></h5>
                             <small>Status:
-                                <span class="badge bg-warning">
+                                <?php 
+                                    if ($pedido['status'] == 'Em andamento') {
+                                        echo "<span class='badge bg-warning'>";
+                                    } elseif ($pedido['status'] == 'Não confirmado') {
+                                        echo "<span class='badge bg-secondary'>";
+                                    } elseif ($pedido['status'] == 'Negado' || $pedido['status'] == 'Cancelado') {
+                                        echo "<span class='badge bg-danger'>";
+                                    } elseif ($pedido['status'] == 'Finalizado') {
+                                        echo "<span class='badge bg-success'>";
+                                    }
+                                ?>
+    
                                     <?= $pedido['status'] ?>
                                 </span>
                             </small>
@@ -69,10 +80,27 @@ include("../select/pedido.php");
                         </table>
                     </div>
 
+                    <?php if ($pedido['status'] == 'Em andamento') {?>
+
                     <div class="text-end mt-3">
-                        <button class="btn btn-danger">Cancelar Pedido</button>
                         <button class="btn btn-success ms-2">Confirmar Recebimento</button>
                     </div>
+
+                    <?php } elseif ($pedido['status'] == 'Negado' || $pedido['status'] == 'Cancelado') { ?>
+                        <div class="text-start mt-3">
+                            <h5>Motivo</h5>
+                            <p><?= $pedido['motivo']?></p>
+                        </div>
+
+                    <?php } elseif ($pedido['status'] == 'Não confirmado') { ?>
+                        <div class="text-end mt-3">
+                            <form action="../update/cancelar.php" method="post">
+                                <input type="hidden" name="id_pedido" value="<?=$id?>">
+                                <button type="submit" class="btn btn-danger">Cancelar Pedido</button>
+                            </form>
+                        </div>
+                    <?php }?>
+                        
                 </div>
             </div>
         <?php } ?>
