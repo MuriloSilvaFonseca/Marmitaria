@@ -175,7 +175,7 @@
                     $senha_login = $_REQUEST["senha_login"];
 
                     $sql = "SELECT id_usuario ,email, senha, tipo_usuario FROM usuario 
-                            WHERE email = '$email_login' AND senha = '$senha_login'";
+                            WHERE email = '$email_login' AND senha = '$senha_login' AND status = 'Ativo'";
                     $res = $conn -> query($sql);
 
                     

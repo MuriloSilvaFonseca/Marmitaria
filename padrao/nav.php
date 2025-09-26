@@ -14,7 +14,6 @@
         <a class="nav-link" href="/Marmitaria/php/user/adm/produto/listProd.php">Produto</a>
         <a class="nav-link" href="/Marmitaria/php/user/adm/pedidos/pedidos.php">Pedidos</a>
       </div>
-
       
 
       <a href="/Marmitaria/php/user/registro/logout.php" class="btn btn-danger ms-auto" onclick="<?php echo $_SESSION["email_login"]; ?>">Sair</a>
