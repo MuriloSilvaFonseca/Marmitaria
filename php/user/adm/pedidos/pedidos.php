@@ -6,7 +6,7 @@
     include("../select/andamento.php");
     include("../select/negado.php");
     include("../select/finalizado.php");
-
+    include("../select/cancelado.php");
 ?>
 
 
