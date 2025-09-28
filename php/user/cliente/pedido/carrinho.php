@@ -16,7 +16,7 @@
             "nome_prod_carrinho" => $nome_prod_carrinho[$i],
             "vlr_uni" => floatval($vlr_uni[$i]),
             "qtd_prod" => intval($qtd_prod[$i]),
-            "subTotal" => floatval($qtd_prod[$i]) * intval($vlr_uni[$i])
+            "subTotal" => intval($qtd_prod[$i]) * floatval($vlr_uni[$i])
         ];
     }
 
@@ -58,12 +58,12 @@
                                 </td>
 
                                 <td>
-                                    R$ <?=$info['vlr_uni']?>
+                                    R$ <?=number_format($info['vlr_uni'], 2, ',', '.')?>
                                     <input type="hidden" name="vlr_uni[]" value="<?=$info['vlr_uni']?>">
                                 </td>
 
                                 <td>
-                                    R$ <?=$info['subTotal']?>
+                                    R$ <?=number_format($info['subTotal'], 2, ',', '.')?>
                                     
                                 </td>
                             </tr>
@@ -75,7 +75,7 @@
                         <tr>
                             <input type="hidden" name="total" value="<?=$total?>">
                             <td colspan="3" class="text-end fw-bold">Total:</td>
-                            <td class="fw-bold">R$ <?=$total?></td>
+                            <td class="fw-bold">R$ <?=number_format($total, 2, ',', '.')?></td>
                         </tr>
                     </tbody>
                 </table>

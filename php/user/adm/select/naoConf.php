@@ -2,6 +2,7 @@
 
 $sql = "SELECT 
         p.id_pedido,
+        us.nome_usuario,
         p.tipo_pag,
         p.entrega,
         p.status,
@@ -16,6 +17,8 @@ $sql = "SELECT
         ON p.id_pedido = pp.id_pedido
     INNER JOIN produto prd 
         ON pp.id_produto = prd.id_produto
+    INNER JOIN usuario us
+		ON p.id_usuario = us.id_usuario
     WHERE p.status = 'Não confirmado'
     ORDER BY p.id_pedido DESC
 ";
@@ -30,6 +33,7 @@ $sql = "SELECT
         $id = $row['id_pedido'];
         if (!isset($pedidos[$id])) {
             $pedidos[$id] = [
+                'nome_usuario'=> $row['nome_usuario'],
                 'tipo_pag'    => $row['tipo_pag'],
                 'entrega'     => $row['entrega'],
                 'status'      => $row['status'],

@@ -11,7 +11,11 @@ if (isset($_SESSION["email_login"])) {
 
 $logado = $_SESSION["email_login"];
 
+include("../../padrao/conexao.php");
 include("../../padrao/nav.php");
+include("../user/adm/select/naoConf.php");
+include("../user/adm/select/andamento.php");
+include("../user/adm/select/dashboard.php")
 
 ?>
 
@@ -40,7 +44,7 @@ include("../../padrao/nav.php");
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h5 class="fw-bold text-primary">Clientes Ativos</h5>
-                            <h2 class="fw-bold text-dark" id="clientesAtivos">127</h2>
+                            <h2 class="fw-bold text-dark" id="clientesAtivos"><?= $contTotclientes?></h2>
                             <small class="text-muted">Este mês</small>
                         </div>
                         <div class="display-4 text-primary">
@@ -58,7 +62,7 @@ include("../../padrao/nav.php");
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h5 class="fw-bold text-success">Rendimento Atual</h5>
-                            <h2 class="fw-bold" id="rendimentoAtual">R$ 2.850,50</h2>
+                            <h2 class="fw-bold" id="rendimentoAtual">R$ <?= number_format($totalDiario, 2, ',', '.')?></h2>
                             <small class="text-muted">Hoje</small>
                         </div>
                         <div class="display-4 text-success">
@@ -76,7 +80,7 @@ include("../../padrao/nav.php");
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h5 class="fw-bold text-warning">Pedidos em Andamento</h5>
-                            <h2 class="fw-bold text-dark" id="pedidosAndamento">15</h2>
+                            <h2 class="fw-bold text-dark" id="pedidosAndamento"><?= $contPedAnd?></h2>
                             <small class="text-muted">Sendo preparados</small>
                         </div>
                         <div class="display-4 text-warning">
@@ -94,7 +98,7 @@ include("../../padrao/nav.php");
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h5 class="fw-bold text-danger">Não Confirmados</h5>
-                            <h2 class="fw-bold text-dark" id="pedidosNaoConfirmados">8</h2>
+                            <h2 class="fw-bold text-dark" id="pedidosNaoConfirmados"><?= $contPedPen?></h2>
                             <small class="text-muted">Aguardando confirmação</small>
                         </div>
                         <div class="display-4 text-danger">
@@ -118,11 +122,11 @@ include("../../padrao/nav.php");
                     <div class="row text-center">
                         <div class="col-md-4">
                             <h6 class="text-muted">Total de Pedidos</h6>
-                            <h3 class="fw-bold text-primary" id="totalPedidos">23</h3>
+                            <h3 class="fw-bold text-primary" id="totalPedidos"><?= $contTotPed?></h3>
                         </div>
                         <div class="col-md-4">
                             <h6 class="text-muted">Ticket Médio</h6>
-                            <h3 class="fw-bold text-success" id="ticketMedio">R$ 123,89</h3>
+                            <h3 class="fw-bold text-success" id="ticketMedio">R$ <?= number_format($ticketDiario, 2, ',', '.')?></h3>
                         </div>
                         <div class="col-md-4">
                             <h6 class="text-muted">Prato Mais Vendido</h6>
@@ -146,7 +150,7 @@ include("../../padrao/nav.php");
                  <!-- CARD DE UM PEDIDO --> 
                   <?php if (empty($pedidos)) { ?> 
                     <div class="alert alert-info">
-                        Você ainda não possui pedidos em andamento
+                        Não existe pedidos aguardando confirmação
                     </div> 
 
                     <?php 
@@ -154,9 +158,12 @@ include("../../padrao/nav.php");
                             foreach ($pedidos as $id => $pedido) { 
                     ?> 
                                 <div class="card shadow-sm mb-3 bg-light">
-                                    <div class="card-header bg-secondary text-light"> quero que coloque as colunas dentro de uma div e em cima eu quero a opção de Em andamento, Finalizada, Negada, Não confirmada 
-                                        <h5 class="mb-0">Pedido #<?= $id ?></h5> 
-                                        <small>Status: <span class="badge bg-light text-dark">Aguardando Confirmação</span></small> 
+                                    <div class="card-header bg-secondary text-light">
+                                        <div class="d-flex justify-content-between">
+                                            <h5 class="mb-0">Pedido #<?= $id ?></h5>
+                                            <h5>Cliente: <?= $pedido['nome_usuario']?></h5>
+                                        </div>  
+                                            <small>Status: <span class="badge bg-light text-dark">Aguardando Confirmação</span></small>
                                     </div>
                                     
                                     <div class="card-body">
@@ -197,13 +204,16 @@ include("../../padrao/nav.php");
                                         </div>
 
                                         <div class="text-end mt-3 d-flex justify-content-end">
-                                            <form action="../update/statusPed.php" method="post"> 
-                                                <input type="hidden" name="sttMod" value="Negado"> <input type="hidden" name="id_pedido" value="<?= $id ?>"> 
+                                            <form action="../user/adm/update/statusPed.php" method="post"> 
+                                                <input type="hidden" name="sttMod" value="Negado"> 
+                                                <input type="hidden" name="id_pedido" value="<?= $id ?>"> 
                                                 <button class="btn btn-danger btn-sm">Negar Pedido</button> 
                                             </form>
 
-                                            <form action="../update/statusPed.php" method="post"> 
-                                                <input type="hidden" name="sttMod" value="Em andamento"> <input type="hidden" name="id_pedido" value="<?= $id ?>"> 
+                                            <form action="../user/adm/update/statusPed.php" method="post"> 
+                                                <input type="hidden" name="sttMod" value="Em andamento">
+                                                <input type="hidden" name="saida" value="home-adm">  
+                                                <input type="hidden" name="id_pedido" value="<?= $id ?>"> 
                                                 <button class="btn btn-success btn-sm ms-2">Confirmar Pedido</button> 
                                             </form>
                                         </div>
@@ -218,13 +228,20 @@ include("../../padrao/nav.php");
                 <h4 class="mb-3 text-center text-warning">Pedidos em andamento</h4>
                     <!-- CARD DE UM PEDIDO --> 
                      <?php if (empty($pedsAndamento)) { ?> 
-                        <div class="alert alert-info">Você ainda não possui pedidos</div> 
+                        <div class="alert alert-info">Não existe pedidos em andamento</div> 
                         <?php } else {
                             foreach ($pedsAndamento as $idAnd => $pediAndamento) { ?> 
                             <div class="card shadow-sm mb-3">
                                 <div class="card-header bg-warning text-white">
-                                    <h5 class="mb-0">Pedido #<?= $idAnd ?></h5>
-                                    <small>Status: <span class="badge bg-warning"><?= $pediAndamento['status'] ?></span></small>
+                                    <div class="d-flex justify-content-between">
+                                        <h5 class="mb-0">Pedido #<?= $idAnd ?></h5>
+                                        <h5>Cliente: <?= $pediAndamento['nome_usuario']?></h5>
+                                    </div>
+
+                                    <div class="d-flex justify-content-between">
+                                        <small>Status: <span class="badge bg-warning"><?= $pediAndamento['status'] ?></span></small>
+                                        <small>Iniciado em: <?= date('d/m/Y H:i', strtotime($pediAndamento['data_comeco'])) ?></small>
+                                    </div>
                                 </div>
                             <div class="card-body">
                                 <div class="row mb-3">
@@ -242,26 +259,37 @@ include("../../padrao/nav.php");
                                                 <th>Subtotal</th>
                                             </tr>
                                         </thead>
-                                        <tbody> <?php foreach ($pediAndamento['produtos'] as $prodAnd) { ?> <tr>
+                                        <tbody> 
+                                            <?php foreach ($pediAndamento['produtos'] as $prodAnd) { ?> 
+                                                <tr>
                                                     <td><?= $prodAnd['nome'] ?></td>
                                                     <td><?= $prodAnd['qtd'] ?></td>
                                                     <td>R$ <?= number_format($prodAnd['valor'], 2, ',', '.') ?></td>
                                                     <td>R$ <?= number_format($prodAnd['qtd'] * $prodAnd['valor'], 2, ',', '.') ?></td>
                                                 </tr>
-                                        </tbody> <?php } ?> <tfoot>
-                                        <tr>
-                                            <td colspan="3" class="text-end"><strong>Total:</strong></td>
-                                            <td><strong>R$ <?= number_format($pediAndamento['total'], 2, ',', '.') ?></strong></td>
-                                        </tr>
-                                    </tfoot>
+                                        </tbody> 
+                                                <?php } ?> 
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                                                <td><strong>R$ <?= number_format($pediAndamento['total'], 2, ',', '.') ?></strong></td>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
-                                <div class="text-end mt-3"> <button class="btn btn-success btn-sm ms-2">Finalizar pedido</button> </div>
+                                <div class="text-end mt-3">
+                                    <form action="../user/adm/update/statusPed.php" method="post">
+                                        <input type="hidden" name="sttMod" value="Finalizado"> 
+                                        <input type="hidden" name="id_pedido" value="<?= $idAnd ?>">
+                                        <button class="btn btn-success btn-sm ms-2">Finalizar pedido</button> 
+                                    </form>
+                                </div>
                             </div>
-                        </div> <?php } ?> <?php } ?>
+                        </div> 
+                    <?php } ?> 
+                <?php } ?>
             </div>
         </div>
-
     </div>
 
     <?php

@@ -41,12 +41,15 @@
                     <h4 class="mb-3 text-center text-dark">Pedidos não confirmados</h4>
                     
                     <?php if (empty($pedidos)) { ?>
-                        <div class="alert alert-info">Você ainda não possui pedidos em andamento</div>
+                        <div class="alert alert-info">Não existe pedidos aguardando confirmação</div>
                     <?php } else {
                         foreach ($pedidos as $id => $pedido) { ?>
                         <div class="card shadow-sm mb-3 bg-light">
                             <div class="card-header bg-secondary text-light">
-                                <h5 class="mb-0">Pedido #<?= $id ?></h5>
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="mb-0">Pedido #<?= $id ?></h5>
+                                    <h5>Cliente: <?= $pedido['nome_usuario']?></h5>
+                                </div>
                                 
                                 <small>Status: <span class="badge bg-light text-dark">Aguardando Confirmação</span></small>
                             </div>
@@ -59,7 +62,7 @@
                                 <div class="row mb-3">
                                     <div class="col-md-4"><strong>Pagamento:</strong> <?= $row['tipo_pag']?> </div>
                                     <div class="col-md-4"><strong>Entrega:</strong> <?= $pedido['entrega'] ?></div>
-                                    <div class="col-md-4"><strong>Data:</strong> <?= date('d/m/Y H:i', strtotime($pedido['data_pedido'])) ?></div>
+                                    <div class="col-md-4"><strong>Data do pedido:</strong> <?= date('d/m/Y H:i', strtotime($pedido['data_pedido'])) ?></div>
                                 </div>
 
                                 <div class="table-responsive">
@@ -117,7 +120,7 @@
         <div class="tab-pane " id="emAndamento">
             <h4 class="mb-3 text-center text-warning">Pedidos em andamento</h4>
             <?php if (empty($pedsAndamento)) {?>
-                <div class="alert alert-info">Você não possui em andamento pedidos</div>
+                <div class="alert alert-info">Não existe pedidos em andamento</div>
 
             <?php } else {
                 foreach ($pedsAndamento as $idAnd => $pediAndamento) {?>
@@ -127,13 +130,18 @@
                         <h5 class="mb-0">Pedido #<?= $idAnd ?></h5>
                         <h5>Cliente: <?= $pediAndamento['nome_usuario']?></h5>
                     </div>
-                    <small>Status: <span class="badge bg-warning"><?= $pediAndamento['status'] ?></span></small>
+
+                    <div class="d-flex justify-content-between">
+                        <small>Status: <span class="badge bg-warning"><?= $pediAndamento['status'] ?></span></small>
+                        <small>Iniciado em: <?= date('d/m/Y H:i', strtotime($pediAndamento['data_comeco'])) ?></small>
+                    </div>
+                    
                 </div>
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-md-4"><strong>Pagamento:</strong> <?= $rowAnd['tipo_pag']?></div>
                         <div class="col-md-4"><strong>Entrega:</strong> <?= $pediAndamento['entrega'] ?></div>
-                        <div class="col-md-4"><strong>Data:</strong> <?= date('d/m/Y H:i', strtotime($pediAndamento['data_pedido'])) ?> </div>
+                        <div class="col-md-4"><strong>Data do pedido:</strong> <?= date('d/m/Y H:i', strtotime($pediAndamento['data_pedido'])) ?> </div>
                     </div>
 
                     <div class="table-responsive">
@@ -186,7 +194,7 @@
             <h4 class="mb-3 text-center text-success">Pedidos Finalizados</h4>
             
             <?php if (empty($pedsFinalizado)) {?>
-                <div class="alert alert-info">Você não possui pedidos finalizados</div>
+                <div class="alert alert-info">Não existe pedidos finalizados</div>
 
             <?php } else {
                 foreach ($pedsFinalizado as $idFin => $pediFinalizado) {?>
@@ -196,13 +204,23 @@
                         <h5 class="mb-0">Pedido #<?= $idFin ?></h5>
                         <h5 class="">Cliente: <?= $pediFinalizado['nome_usuario']?></h5>
                     </div>
-                    <small>Status: <span class="badge bg-success"><?= $pediFinalizado['status'] ?></span></small>
+
+                    <div class="d-flex justify-content-between">
+                        <small>Status: <span class="badge bg-success"><?= $pediFinalizado['status'] ?></span></small>
+
+                        <div>
+                            <small><b>Iniciado</b> em: <?= date('d/m/Y H:i', strtotime($pediFinalizado['data_comeco'])) ?></small>
+                            <small class="ms-3"><b>Finalizado em:</b> <?= date('d/m/Y H:i', strtotime($pediFinalizado['data_final'])) ?></small>
+                        </div>
+                    </div>
+
+                    
                 </div>
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-md-4"><strong>Pagamento:</strong> <?= $rowFin['tipo_pag']?></div>
                         <div class="col-md-4"><strong>Entrega:</strong> <?= $pediFinalizado['entrega'] ?></div>
-                        <div class="col-md-4"><strong>Data:</strong> <?= date('d/m/Y H:i', strtotime($pediFinalizado['data_pedido'])) ?> </div>
+                        <div class="col-md-4"><strong>Data do pedido:</strong> <?= date('d/m/Y H:i', strtotime($pediFinalizado['data_pedido'])) ?> </div>
                     </div>
 
                     <div class="table-responsive">
@@ -246,7 +264,7 @@
             <h4 class="mb-3 text-center text-danger">Pedidos negados</h4>
             
             <?php if (empty($pedsNegado)) {?>
-                <div class="alert alert-info">Não possui pedidos negados</div>
+                <div class="alert alert-info">Não existe pedidos negados</div>
 
             <?php } else {
                 foreach ($pedsNegado as $idNeg => $pediNegado) {?>
@@ -312,7 +330,7 @@
             <h4 class="mb-3 text-center text-danger">Pedidos Cancelados</h4>
             
             <?php if (empty($pedsCancelado)) {?>
-                <div class="alert alert-info">Não possui pedidos cancelados</div>
+                <div class="alert alert-info">Não existe pedidos cancelados</div>
 
             <?php } else {
                 foreach ($pedsCancelado as $idCan => $pediCancelado) {?>
@@ -328,7 +346,7 @@
                     <div class="row mb-3">
                         <div class="col-md-4"><strong>Pagamento:</strong> <?= $rowCan['tipo_pag']?></div>
                         <div class="col-md-4"><strong>Entrega:</strong> <?= $pediCancelado['entrega'] ?></div>
-                        <div class="col-md-4"><strong>Data:</strong> <?= date('d/m/Y H:i', strtotime($pediCancelado['data_pedido'])) ?> </div>
+                        <div class="col-md-4"><strong>Data do pedido:</strong> <?= date('d/m/Y H:i', strtotime($pediCancelado['data_pedido'])) ?> </div>
                     </div>
 
                     <div class="table-responsive">

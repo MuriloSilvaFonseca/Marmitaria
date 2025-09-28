@@ -7,6 +7,8 @@ $fin = "SELECT
         p.entrega,
         p.status,
         p.data_pedido,
+        p.data_comeco,
+        p.data_final,
         p.total,
         p.motivo,
         prd.nome_produto,
@@ -39,6 +41,8 @@ $fin = "SELECT
                 'entrega'     => $rowFin['entrega'],
                 'status'      => $rowFin['status'],
                 'data_pedido' => $rowFin['data_pedido'],
+                'data_comeco' => $rowFin['data_comeco'],
+                'data_final'  => $rowFin['data_final'],
                 'total'       => $rowFin['total'],
                 'produtos'    => []
             ];

@@ -4,17 +4,27 @@
 
     $sttMod = $_REQUEST['sttMod'];
     $id_pedido = $_REQUEST['id_pedido'];
+    $saida = $_REQUEST['saida'];
+
+    $capDatetime = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
 
     
 
-    if($sttMod =='Em andamento' && $res == true) {
-        $sql = "UPDATE pedido SET status = '$sttMod' WHERE id_pedido = '$id_pedido'";
+    if($sttMod =='Em andamento') {
+
+        $data_comeco = $capDatetime->format('Y-m-d H:i:s');
+        $sql = "UPDATE pedido SET status = '$sttMod', data_comeco = '$data_comeco' WHERE id_pedido = '$id_pedido'";
 
         $res = $conn -> query($sql);
 
         if ($res == true) {
             echo "<script>alert('O pedido está Em andamento');</script>";
-            echo "<script>location.href = '../pedidos/pedidos.php';</script>";
+            if ($saida == 'home-adm') {
+                echo "<script>location.href = '../../../home/home-adm.php';</script>";
+            } else {
+                echo "<script>location.href = '../pedidos/pedidos.php';</script>";
+            }
+            
         } else {
             echo "<script>alert('O pedido foi possível colocar o pedido em andamento');</script>";
             echo "<script>location.href = '../pedidos/pedidos.php';</script>";
@@ -25,7 +35,10 @@
         echo "<script>location.href = '../pedidos/motivo.php';</script>";
 
     } elseif ($sttMod == 'Finalizado'){
-        $sql = "UPDATE pedido SET status = '$sttMod' WHERE id_pedido = '$id_pedido'";
+
+        $data_final = $capDatetime->format('Y-m-d H:i:s');
+
+        $sql = "UPDATE pedido SET status = '$sttMod', data_final = '$data_final' WHERE id_pedido = '$id_pedido'";
 
         $res = $conn -> query($sql);
 

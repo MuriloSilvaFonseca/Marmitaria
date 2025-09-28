@@ -21,7 +21,7 @@
                     <h5 class="card-title"><?= $prod['nome_produto']?></h5>
                     <p class="card-text flex-grow-1"><?= $prod['descricao']?></p>
                     <p class="mb-0 p-2"><?= $prod['categoria']?></p>
-                    <p class="card-text"><strong>R$<?= $prod['valor_prod']?></strong></p>
+                    <p class="card-text"><strong>R$<?= number_format($prod['valor_prod'], 2, ',', '.')?></strong></p>
 
                     <div class="input-group mb-2">
                     <span class="input-group-text">Qtd</span>
@@ -78,26 +78,27 @@
             const preco = parseFloat(precoText.replace(",", "."));
             const qtd = parseInt(card.querySelector("input").value) || 1;
 
-            
-            total = total + (preco * qtd);
+            total += preco * qtd;
             totalEl.textContent = total.toFixed(2).replace(".", ",");
-            document.getElementById("inputTotal").value = total.toFixed(2);
+            document.getElementById("inputTotal").value = total;
 
-            
             const vazio = carrinho.querySelector(".text-muted");
             if (vazio) vazio.remove();
-            
+
             const li = document.createElement("li");
             li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
+
+            // Armazena dados no li
+            li.dataset.preco = preco;
+            li.dataset.qtd = qtd;
 
             const idProduto = this.getAttribute("data-id");
 
             li.innerHTML = `
                 <input type='hidden' name='id_produto_carrinho[]' value='${idProduto}'>
                 <input type='hidden' name='nome_prod_carrinho[]' value='${nome}'>
-                <input type='hidden' name='qtd_prod[]' value='${qtd}'>
                 <input type='hidden' name='vlr_uni[]' value='${preco}'>
-
+                <input type='hidden' name='qtd_prod[]' value='${qtd}'>
                 <span>${nome} x${qtd}</span>
                 <span>
                   R$ ${(preco * qtd).toFixed(2).replace(".", ",")}
@@ -109,21 +110,26 @@
 
             const btnRemover = li.querySelector("button");
             btnRemover.addEventListener("click", function () {
-                total = total - (preco * qtd);
-                totalEl.textContent = total.toFixed(2).replace(".", ",");
-                li.remove();
+    const precoLi = parseFloat(li.dataset.preco);
+    const qtdLi = parseInt(li.dataset.qtd);
+    total -= precoLi * qtdLi;
 
-                
-                if (carrinho.children.length === 0) {
-                    const vazioLi = document.createElement("li");
-                    vazioLi.classList.add("list-group-item", "text-center", "text-muted");
-                    vazioLi.textContent = "Nenhum produto adicionado";
-                    carrinho.appendChild(vazioLi);
-                }
-            });
+    totalEl.textContent = total.toFixed(2).replace(".", ",");
+    document.getElementById("inputTotal").value = total.toFixed(2); // ATUALIZA O HIDDEN
+
+    li.remove();
+
+    if (carrinho.children.length === 0) {
+        const vazioLi = document.createElement("li");
+        vazioLi.classList.add("list-group-item", "text-center", "text-muted");
+        vazioLi.textContent = "Nenhum produto adicionado";
+        carrinho.appendChild(vazioLi);
+    }
+});
         });
     });
 });
+
 
 </script>
 

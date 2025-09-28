@@ -7,6 +7,7 @@ $and = "SELECT
         p.entrega,
         p.status,
         p.data_pedido,
+        p.data_comeco,
         p.total,
         p.motivo,
         prd.nome_produto,
@@ -39,6 +40,7 @@ $and = "SELECT
                 'entrega'     => $rowAnd['entrega'],
                 'status'      => $rowAnd['status'],
                 'data_pedido' => $rowAnd['data_pedido'],
+                'data_comeco' => $rowAnd['data_comeco'],
                 'total'       => $rowAnd['total'],
                 'produtos'    => []
             ];
