@@ -17,8 +17,12 @@
         $totalDiario = $totalDiario + $totUni['total'];
     }
 
+    
     $contPedDiario = $resRendDiario -> rowCount();
-    $ticketDiario = $totalDiario / $contPedDiario;
+    if ($contPedDiario != 0) {
+        $ticketDiario = $totalDiario / $contPedDiario;
+    }
+    
 
 
     $pedAnd = "SELECT * FROM pedido WHERE status = 'Em andamento'";

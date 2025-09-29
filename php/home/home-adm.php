@@ -126,7 +126,15 @@ include("../user/adm/select/dashboard.php")
                         </div>
                         <div class="col-md-4">
                             <h6 class="text-muted">Ticket Médio</h6>
-                            <h3 class="fw-bold text-success" id="ticketMedio">R$ <?= number_format($ticketDiario, 2, ',', '.')?></h3>
+                            <h3 class="fw-bold text-success" id="ticketMedio">R$ 
+                                <?php 
+                                    if (isset($ticketDiario)) {
+                                        echo number_format($ticketDiario, 2, ',', '.');
+                                    } else {
+                                        echo "0,00";
+                                    }
+                                ?>
+                            </h3>
                         </div>
                         <div class="col-md-4">
                             <h6 class="text-muted">Prato Mais Vendido</h6>
