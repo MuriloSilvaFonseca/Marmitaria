@@ -82,10 +82,6 @@ include("../select/pedido.php");
 
                     <?php if ($pedido['status'] == 'Em andamento') {?>
 
-                    <div class="text-end mt-3">
-                        <button class="btn btn-success ms-2">Confirmar Recebimento</button>
-                    </div>
-
                     <?php } elseif ($pedido['status'] == 'Negado' || $pedido['status'] == 'Cancelado') { ?>
                         <div class="text-start mt-3">
                             <h5>Motivo</h5>

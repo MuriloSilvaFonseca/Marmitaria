@@ -31,6 +31,7 @@
             <a class="nav-link text-danger" data-bs-toggle="tab" href="#cancelados">Cancelados</a>
         </li>
     </ul>
+    
 
     <!-- CONTEÚDO DAS ABAS -->
     <div class="tab-content">

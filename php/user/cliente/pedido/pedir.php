@@ -14,23 +14,39 @@
         <?php
             if ($row > 0) {
                 foreach ($lista as $prod) {
+
+                  if ($prod['qtd_est'] == 0) {
+                    $zerado = "UPDATE produto SET status = 'Indisponível' WHERE id_produto = '{$prod['id_produto']}'";
+                    $resZerado = $conn -> query($zerado);
+                  }
         ?>
+          
+
           <div class="col-12 col-md-6">
             <div class="card h-100">
               <div class="card-body d-flex flex-column">   
-                    <h5 class="card-title"><?= $prod['nome_produto']?></h5>
-                    <p class="card-text flex-grow-1"><?= $prod['descricao']?></p>
-                    <p class="mb-0 p-2"><?= $prod['categoria']?></p>
-                    <p class="card-text"><strong>R$<?= number_format($prod['valor_prod'], 2, ',', '.')?></strong></p>
+                <h5 class="card-title"><?= $prod['nome_produto']?></h5>
+                <p class="card-text flex-grow-1"><?= $prod['descricao']?></p>
+                <p class="mb-0 p-2"><?= $prod['categoria']?></p>
+                <p class="card-text">
+                  <strong>R$<?= number_format($prod['valor_prod'], 2, ',', '.')?></strong>
+                </p>
 
-                    <div class="input-group mb-2">
-                    <span class="input-group-text">Qtd</span>
-                    <input type="number" class="form-control" value="1" min="1">
-                    </div>
-                    <button type="button" class="btn btn-primary w-100" data-id="<?=$prod['id_produto']?>">Adicionar ao Carrinho</button>                
+                <div class="input-group mb-2">
+                  <span class="input-group-text">Qtd</span>
+                  <input type="number" class="form-control" value="1" min="1">
+                  <span class="input-group-text">
+                    <?= $prod['qtd_est'] ?> em estoque
+                  </span>
+                </div>
+
+                <button type="button" class="btn btn-primary w-100" data-id="<?=$prod['id_produto']?>">
+                  Adicionar ao Carrinho
+                </button>                
               </div>
             </div>
           </div>
+
         <?php
                 }
             } else {

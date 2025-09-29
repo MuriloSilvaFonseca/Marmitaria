@@ -9,7 +9,6 @@
     <div class="card shadow-lg">
       <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
         <h4 class="mb-0">📋 Listagem de Clientes</h4>
-        <button class="btn btn-light btn-sm"></button>
       </div>
       <?php 
         if ($row > 0) {
@@ -42,43 +41,42 @@
                 <td>
                   <form action="listEndereco.php" method="post" class="mb-0">
                     <input type="hidden" name="id_user" value="<?= $envia = $user['id_usuario'];?>">
-                    <button type="submit" class="btn btn-sm btn-primary">Mostrar</button>
+                    <button type="submit" class="btn btn-sm btn-primary">Endereço</button>
                   </form>
                 </td>
                 <td>
                   <div class="d-flex flex-wrap gap-1">
 
-                    <div>
+                    
                       <form action="editar-cliente.php" method="post" class="mb-1">
                         <input type="hidden" name="id_user_editar" value="<?= $user['id_usuario']; ?>">
-                        <button type="submit" class="btn btn-sm btn-success ">Editar</button>
+                        <button type="submit" class="btn btn-sm btn-success ">✏️</button>
                       </form>
-                      <form action="../delete/lista-clientes.php" method="post" class="mb-1">
-                        <input type="hidden" name="id_user_excluir" value="<?= $user['id_usuario']; ?>">
-                        <button type="submit" class="btn btn-sm btn-danger ">Excluir</button>
+                      
+                      <form action="../pedidos/historico.php" method="post" class="mb-1">
+                        <input type="hidden" name="id_user_pedidos" value="<?= $user['id_usuario']; ?>">
+                        <button type="submit" class="btn btn-sm btn-info">📦</button>
                       </form>
-                    </div>
 
-                    <div>
                       <form action="../update/status.php" method="post" class="mb-1">
                         <input type="hidden" name="id_user_status" value="<?= $user['id_usuario']; ?>">
                         <input type="hidden" name="condicao_status" value="<?= $user['status']; ?>">
                         <button type="submit" class="btn btn-sm btn-warning">
                           <?php
                             if ($user['status'] == 'Ativo') {
-                              echo 'Desativar';
+                              echo '⛔';
                             } else {
-                              echo 'Ativar';
+                              echo '✅';
                             }
                           ?>
                         </button>
                       </form>
                       
-                      <form action="../pedidos/historico.php" method="post" class="mb-1">
-                        <input type="hidden" name="id_user_pedidos" value="<?= $user['id_usuario']; ?>">
-                        <button type="submit" class="btn btn-sm btn-info">Pedidos</button>
-                      </form>  
-                    </div>
+                      <form action="../delete/lista-clientes.php" method="post" class="mb-1">
+                        <input type="hidden" name="id_user_excluir" value="<?= $user['id_usuario']; ?>">
+                        <button type="submit" class="btn btn-sm btn-danger ">🗑️</button>
+                      </form>
+                    
                   </div>
 
                 </td>

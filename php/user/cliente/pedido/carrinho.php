@@ -101,21 +101,12 @@
 
                 <input type="hidden" name="status" value="Não confirmado">
 
-                <button type="submit" class="btn btn-success w-100" onclick="confirmarPedido()">Confirmar Pedido</button>
+                <button type="submit" class="btn btn-success w-100">Confirmar Pedido</button>
                         
             </form>
         </div>
     </div>
 </div>
-
-<script>
-    function confirmarPedido() {
-        const pagamento = document.getElementById('pagamento').value;
-        const entrega = document.getElementById('entrega').value;
-
-        alert('Pedido confirmado!\nMétodo de pagamento: ' + pagamento ,'\nMétodo de entrega: ' + entrega);
-    }
-</script>
 
 <?php 
     include("../../../../padrao/footer.php");

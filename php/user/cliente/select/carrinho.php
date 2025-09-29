@@ -1,5 +1,5 @@
 <?php 
-    $sql = "SELECT id_produto, nome_produto, descricao, valor_prod, categoria, status, qtd_est, dt_aquisicao, dt_venc FROM produto";
+    $sql = "SELECT id_produto, nome_produto, descricao, valor_prod, categoria, status, qtd_est, dt_aquisicao, dt_venc FROM produto WHERE status = 'Disponível'";
 
     $res = $conn -> query($sql);
 

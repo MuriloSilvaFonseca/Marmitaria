@@ -4,6 +4,7 @@ include("../../../../padrao/conexao.php");
     $id_produto = $_REQUEST['id_prod'];
 
     $nome_produto = $_REQUEST["nome_produto"];
+    $descricao = $_REQUEST["descricao"];
     $valor_prod = $_REQUEST["valor_prod"];
     $categoria = $_REQUEST["categoria"];
     $qtd_est = $_REQUEST["qtd_est"];
@@ -11,7 +12,7 @@ include("../../../../padrao/conexao.php");
     $dt_venc = $_REQUEST["dt_venc"];
 
     $sql = "UPDATE produto
-            SET nome_produto = '$nome_produto', valor_prod = '$valor_prod', categoria = '$categoria', qtd_est = '$qtd_est', dt_aquisicao = '$dt_aquisicao', dt_venc = '$dt_venc'
+            SET nome_produto = '$nome_produto', descricao = '$descricao', valor_prod = '$valor_prod', categoria = '$categoria', qtd_est = '$qtd_est', dt_aquisicao = '$dt_aquisicao', dt_venc = '$dt_venc'
             WHERE id_produto = '$id_produto'";
 
     $res = $conn -> query($sql);

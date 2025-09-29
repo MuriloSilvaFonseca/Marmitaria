@@ -12,6 +12,27 @@
     $capDatetime = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
     $data_pedido = $capDatetime->format('Y-m-d H:i:s');
 
+    foreach ($_REQUEST['id_prod_carrinho'] as $i => $id_produto) {
+        $qtd = $_REQUEST['qtd_prod'][$i];
+        $valor_uni = $_REQUEST['vlr_uni'][$i];
+
+    
+        $pegaEst = "SELECT qtd_est FROM produto WHERE id_produto = '{$id_produto}'";
+        $resPegaEst = $conn -> query($pegaEst);
+        $qtd_est = $resPegaEst -> fetch(PDO::FETCH_ASSOC);
+
+       if ($resPegaEst == true && $qtd_est["qtd_est"] >= $qtd) {
+            $subQtd = (int)$qtd_est["qtd_est"] - (int)$qtd;
+
+            $mudaEst = "UPDATE produto SET qtd_est='{$subQtd}' WHERE id_produto = '{$id_produto}'";
+            $resMudaEst = $conn -> query($mudaEst);
+        } else {
+            echo "<script>alert('Não foi possível finalizar a compra')</script>";
+            echo "<script>location.href='confPedido.php'</script>";
+            exit;
+        }
+    }
+    
     $pedido = "INSERT INTO pedido (
                             `id_pedido`,
                             `id_usuario`,
@@ -47,9 +68,11 @@
                                 '{$id_pedido}', '{$id_produto}', '{$qtd}', '{$valor_uni}')";
 
         $resProd_pedido = $conn -> query($produto_pedido);
+
     }
 
-    if($resProd_pedido == true) {
+    if($resPedido == true) {
+        echo "<script>alert('Pedido confirmado!);</script>";
         echo "<script>location.href='confPedido.php'</script>";
     }
 ?>

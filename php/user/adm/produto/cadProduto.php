@@ -4,7 +4,7 @@
 ?>
 
     <div class="card shadow p-4 mx-auto mt-3" style="width: 30rem;">
-    <h3 class="text-center mb-3">Cadastro de Produto</h3>
+
         <form action="../insert/produto.php" method="post">
 
             <div class="mb-3">

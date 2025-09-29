@@ -5,10 +5,6 @@
     include(".././update/test-idProd.php");
 ?>
 
-    <h1>
-        Cadastrar produto
-    </h1>
-
     <div class="card shadow p-4 mx-auto mt-3" style="width: 30rem;">
     <h3 class="text-center mb-3">Editar Produto</h3>
         <form action="../update/produto.php" method="post">

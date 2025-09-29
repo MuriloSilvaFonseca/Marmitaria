@@ -36,7 +36,7 @@
               <tr>
                 <td><?= $user['id_produto'] ?></td>
                 <td><?= $user['nome_produto'] ?></td>
-                <td><?= $user['valor_prod'] ?></td> 
+                <td>R$ <?=number_format($user['valor_prod'], 2, ',', '.')?> </td> 
                 <td><?= $user['categoria'] ?></td>
                 <td><?= $user['qtd_est'] ?></td>
                 <td><?= $dataBR = date("d/m/Y", strtotime($user['dt_aquisicao'])) ?></td>
@@ -46,20 +46,20 @@
                 <td>
                   <div class="d-flex flex-wrap gap-1">
 
-                    <form action="editarProd.php" method="post">
+                    <form action="editarProd.php" method="post" class="mb-0">
                       <input type="hidden" name="id_prod_editar" value="<?= $user['id_produto']; ?>">
-                      <button type="submit" class="btn btn-sm btn-success">Editar</button>
+                      <button type="submit" class="btn btn-sm btn-success">✏️</button>
                     </form>
 
-                    <form action="../update/statusProd.php" method="post">
+                    <form action="../update/statusProd.php" method="post" class="mb-0">
                       <input type="hidden" name="id_produto" value="<?= $user['id_produto']; ?>">
                       <input type="hidden" name="condicao_status" value="<?= $user['status']; ?>">
                       <button type="submit" class="btn btn-sm btn-warning">
                         <?php 
                           if ($user['status'] == 'Disponível') {
-                            echo 'Desativar';
+                            echo '⛔';
                           } else {
-                            echo 'Ativar';
+                            echo '✅';
                           }
                         ?>
                       </button>
