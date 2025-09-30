@@ -62,7 +62,7 @@ include("../user/adm/select/dashboard.php")
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h5 class="fw-bold text-success">Rendimento Atual</h5>
-                            <h2 class="fw-bold" id="rendimentoAtual">R$ <?= number_format($totalDiario, 2, ',', '.')?></h2>
+                            <h2 class="fw-bold" id="rendimentoAtual">R$ <?= number_format($total, 2, ',', '.')?></h2>
                             <small class="text-muted">Hoje</small>
                         </div>
                         <div class="display-4 text-success">
@@ -133,16 +133,13 @@ include("../user/adm/select/dashboard.php")
                                     } else {
                                         echo "0,00";
                                     }
-<<<<<<< HEAD
                                     
-=======
->>>>>>> b2cc565e3cf82f61a41678b2ef31a83c29800194
                                 ?>
                             </h3>
                         </div>
                         <div class="col-md-4">
-                            <h6 class="text-muted">Prato Mais Vendido</h6>
-                            <h3 class="fw-bold text-warning">Frango Grelhado</h3>
+                            <h6 class="text-muted">Rendimento de hoje</h6>
+                            <h3 class="fw-bold text-secundary">R$ <?= number_format($totalDiario, 2, ',', '.')?></h3>
                         </div>
                     </div>
                 </div>

@@ -11,17 +11,28 @@
         $deleteUser = "DELETE FROM usuario
                 WHERE id_usuario = '$id_usuario'";
 
-        $res = $conn -> query($deleteEndereco);
+        $testePedido = "SELECT * FROM pedido WHERE id_usuario ='$id_usuario'";
+        $resTestePedido = $conn -> query($testePedido);
+        $contTestePedido = $resTestePedido -> rowCount();
 
-        $res2 = $conn -> query($deleteUser);
+        if ($contTestePedido == 0) {
+            $res = $conn -> query($deleteEndereco); 
 
-        if ($res == true && $res2 == true) {
-            echo "<script>alert('Excluido com sucesso')</script>";
-            echo "<script>location.href='../admClientes/listagem-clientes.php';</script>";
+            $res2 = $conn -> query($deleteUser);
+
+            if ($res == true && $res2 == true) {
+                echo "<script>alert('Excluido com sucesso')</script>";
+                echo "<script>location.href='../admClientes/listagem-clientes.php';</script>";
+            } else {
+                echo "<script>alert('Não foi possivel excluir');</script>";
+                echo "<script>location.href='../admClientes/listagem-clientes.php';</script>";
+            }
+
         } else {
-            echo "<script>alert('Não foi possivel excluir');</script>";
+            echo "<script>alert('Não foi possível excluir a conta. O cliente possui um histórico')</script>";
             echo "<script>location.href='../admClientes/listagem-clientes.php';</script>";
         }
+
     } else {
         echo "<script>alert('Não foi possivel excluir.Cliente não encontrado');</script>";
 

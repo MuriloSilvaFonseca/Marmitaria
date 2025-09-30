@@ -19,15 +19,23 @@
 
     
     $contPedDiario = $resRendDiario -> rowCount();
-<<<<<<< HEAD
-
-=======
->>>>>>> b2cc565e3cf82f61a41678b2ef31a83c29800194
     if ($contPedDiario != 0) {
         $ticketDiario = $totalDiario / $contPedDiario;
     }
-    
 
+    $rendTotal = "SELECT total FROM pedido WHERE status = 'Finalizado'";
+    $resRendTotal = $conn -> query($rendTotal);
+    $pegRendTot = $resRendTotal -> fetchAll(PDO::FETCH_ASSOC);
+
+    $contRendTotal = $resRendTotal -> rowCount();
+
+    $i = 0;
+
+    $total = 0;
+
+    for ($i = 0; $i < $contRendTotal; $i++ ) {
+        $total = $total + (float)$pegRendTot[$i]['total'];
+    }
 
     $pedAnd = "SELECT * FROM pedido WHERE status = 'Em andamento'";
     $resPedAnd = $conn -> query($pedAnd);
