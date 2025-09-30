@@ -50,4 +50,6 @@
             'valor'  => $row['valor_uni']
         ];   
 }
+
+    $nome
 ?>

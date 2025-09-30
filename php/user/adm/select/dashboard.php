@@ -17,8 +17,12 @@
         $totalDiario = $totalDiario + $totUni['total'];
     }
 
+    
     $contPedDiario = $resRendDiario -> rowCount();
+<<<<<<< HEAD
 
+=======
+>>>>>>> b2cc565e3cf82f61a41678b2ef31a83c29800194
     if ($contPedDiario != 0) {
         $ticketDiario = $totalDiario / $contPedDiario;
     }

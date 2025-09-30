@@ -133,7 +133,10 @@ include("../user/adm/select/dashboard.php")
                                     } else {
                                         echo "0,00";
                                     }
+<<<<<<< HEAD
                                     
+=======
+>>>>>>> b2cc565e3cf82f61a41678b2ef31a83c29800194
                                 ?>
                             </h3>
                         </div>

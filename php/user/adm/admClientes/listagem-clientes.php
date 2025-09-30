@@ -46,36 +46,62 @@
                 </td>
                 <td>
                   <div class="d-flex flex-wrap gap-1">
+<<<<<<< HEAD
 
                     
+=======
+>>>>>>> b2cc565e3cf82f61a41678b2ef31a83c29800194
                       <form action="editar-cliente.php" method="post" class="mb-1">
                         <input type="hidden" name="id_user_editar" value="<?= $user['id_usuario']; ?>">
                         <button type="submit" class="btn btn-sm btn-success ">✏️</button>
                       </form>
+<<<<<<< HEAD
                       
                       <form action="../pedidos/historico.php" method="post" class="mb-1">
                         <input type="hidden" name="id_user_pedidos" value="<?= $user['id_usuario']; ?>">
                         <button type="submit" class="btn btn-sm btn-info">📦</button>
                       </form>
 
+=======
+
+                      <form action="../pedidos/historico.php" method="post" class="mb-1">
+                        <input type="hidden" name="id_user_pedidos" value="<?= $user['id_usuario']; ?>">
+                        <button type="submit" class="btn btn-sm btn-info">📦</button>
+                      </form>
+                  
+>>>>>>> b2cc565e3cf82f61a41678b2ef31a83c29800194
                       <form action="../update/status.php" method="post" class="mb-1">
                         <input type="hidden" name="id_user_status" value="<?= $user['id_usuario']; ?>">
                         <input type="hidden" name="condicao_status" value="<?= $user['status']; ?>">
                         <button type="submit" class="btn btn-sm btn-warning">
                           <?php
                             if ($user['status'] == 'Ativo') {
+<<<<<<< HEAD
                               echo '⛔';
                             } else {
                               echo '✅';
+=======
+                              echo '🔒';
+                            } else {
+                              echo '🔓';
+>>>>>>> b2cc565e3cf82f61a41678b2ef31a83c29800194
                             }
                           ?>
                         </button>
+                      </form>                     
+                                           
+                      <form action="../delete/lista-clientes.php" method="post" class="mb-1">
+                        <input type="hidden" name="id_user_excluir" value="<?= $user['id_usuario']; ?>">
+                        <button type="submit" class="btn btn-sm btn-danger ">🗑️</button>
                       </form>
+<<<<<<< HEAD
                       
                       <form action="../delete/lista-clientes.php" method="post" class="mb-1">
                         <input type="hidden" name="id_user_excluir" value="<?= $user['id_usuario']; ?>">
                         <button type="submit" class="btn btn-sm btn-danger ">🗑️</button>
                       </form>
+=======
+>>>>>>> b2cc565e3cf82f61a41678b2ef31a83c29800194
                     
                   </div>
 

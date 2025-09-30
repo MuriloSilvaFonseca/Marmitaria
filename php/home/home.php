@@ -12,12 +12,19 @@ include("../../padrao/nav-cliente.php");
 
 ?>
 
+<<<<<<< HEAD
 
 
 <!-- Conteúdo -->
 <div class="container my-5">
     <!-- Pedir -->
     <div class="row g-4">
+=======
+<div class="container my-5">
+    <div class="row g-4">
+
+
+>>>>>>> b2cc565e3cf82f61a41678b2ef31a83c29800194
         <div class="col-md-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body text-center">
@@ -28,7 +35,10 @@ include("../../padrao/nav-cliente.php");
             </div>
         </div>
 
+<<<<<<< HEAD
         <!-- Pedidos -->
+=======
+>>>>>>> b2cc565e3cf82f61a41678b2ef31a83c29800194
         <div class="col-md-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body text-center">
@@ -39,7 +49,10 @@ include("../../padrao/nav-cliente.php");
             </div>
         </div>
 
+<<<<<<< HEAD
         <!-- Conta -->
+=======
+>>>>>>> b2cc565e3cf82f61a41678b2ef31a83c29800194
         <div class="col-md-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body text-center">

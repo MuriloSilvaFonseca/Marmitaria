@@ -6,6 +6,7 @@
 ?>
 
     <div class="container my-4">
+        <h1 class="mb-3">Histórico de <?= $row['nome_usuario']?></h1>
     <?php if (empty($pedidos)) { ?>
         <div class="alert alert-info">O cliente não possui pedidos.</div>
     <?php } else { ?>
