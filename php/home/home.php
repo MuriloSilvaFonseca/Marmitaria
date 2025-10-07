@@ -12,11 +12,7 @@ include("../../padrao/nav-cliente.php");
 
 ?>
 
-
-
-<!-- Conteúdo -->
 <div class="container my-5">
-    <!-- Pedir -->
     <div class="row g-4">
         <div class="col-md-4">
             <div class="card h-100 shadow-sm">
@@ -28,7 +24,6 @@ include("../../padrao/nav-cliente.php");
             </div>
         </div>
 
-        <!-- Pedidos -->
         <div class="col-md-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body text-center">
@@ -39,7 +34,6 @@ include("../../padrao/nav-cliente.php");
             </div>
         </div>
 
-        <!-- Conta -->
         <div class="col-md-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body text-center">

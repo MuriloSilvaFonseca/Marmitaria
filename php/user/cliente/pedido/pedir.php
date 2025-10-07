@@ -104,7 +104,6 @@
             const li = document.createElement("li");
             li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
 
-            // Armazena dados no li
             li.dataset.preco = preco;
             li.dataset.qtd = qtd;
 
@@ -131,7 +130,7 @@
     total -= precoLi * qtdLi;
 
     totalEl.textContent = total.toFixed(2).replace(".", ",");
-    document.getElementById("inputTotal").value = total.toFixed(2); // ATUALIZA O HIDDEN
+    document.getElementById("inputTotal").value = total.toFixed(2);
 
     li.remove();
 

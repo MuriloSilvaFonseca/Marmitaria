@@ -8,8 +8,8 @@
     
     <h1>Perfil</h1>
 
-    <div class="container py-5">
-      <div class="row g-4">
+  <div class="container py-5">
+    <div class="row g-4">
 
       <div class="col-md-6">
         <div class="card shadow">
@@ -32,29 +32,29 @@
         </div>
       </div>
 
-      <!-- Card de Endereço -->
-        <div class="col-md-6">
-          <div class="card shadow">
-            <div class="card-header bg-success text-white">
-              <h5 class="mb-0">Endereço</h5>
-            </div>
-            <div class="card-body">
-              <p><strong>Rua:</strong> <?=$end['endereco']?></p>
-              <p><strong>Bairro:</strong> <?=$end['bairro']?></p>
-              <p><strong>Cidade:</strong> <?=$end['cidade']?></p>
-              <p><strong>Estado:</strong> <?=$end['estado']?></p>
-              <p><strong>Complemento:</strong> <?=$end['complemento']?></p>
-              <p><strong>Número da Casa:</strong> <?=$end['num_casa']?></p>
-              <p><strong>CEP:</strong> <?=$end['cep']?></p>
-            </div>
+      <div class="col-md-6">
+        <div class="card shadow">
+          <div class="card-header bg-success text-white">
+            <h5 class="mb-0">Endereço</h5>
+          </div>
 
-            <div class="mb-0 p-2 pt-0">
-              <button class="btn btn-success w-100" onclick="location.href='editarEnd.php'">Editar Endereço</button>
-            </div>
+          <div class="card-body">
+            <p><strong>Rua:</strong> <?=$end['endereco']?></p>
+            <p><strong>Bairro:</strong> <?=$end['bairro']?></p>
+            <p><strong>Cidade:</strong> <?=$end['cidade']?></p>
+            <p><strong>Estado:</strong> <?=$end['estado']?></p>
+            <p><strong>Complemento:</strong> <?=$end['complemento']?></p>
+            <p><strong>Número da Casa:</strong> <?=$end['num_casa']?></p>
+            <p><strong>CEP:</strong> <?=$end['cep']?></p>
+          </div>
+
+          <div class="mb-0 p-2 pt-0">
+            <button class="btn btn-success w-100" onclick="location.href='editarEnd.php'">Editar Endereço</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
 
 

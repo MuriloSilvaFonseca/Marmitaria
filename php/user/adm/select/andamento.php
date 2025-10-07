@@ -35,7 +35,7 @@ $and = "SELECT
         $idAnd = $rowAnd['id_pedido'];
         if (!isset($pedsAndamento[$idAnd])) {
             $pedsAndamento[$idAnd] = [
-                'nome_usuario'    => $rowAnd['nome_usuario'],
+                'nome_usuario'=> $rowAnd['nome_usuario'],
                 'tipo_pag'    => $rowAnd['tipo_pag'],
                 'entrega'     => $rowAnd['entrega'],
                 'status'      => $rowAnd['status'],

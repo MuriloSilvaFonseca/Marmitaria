@@ -10,8 +10,6 @@
 
     $user = $res -> fetch(PDO::FETCH_ASSOC);
 
-    //Enderço
-
     $sql2 = "SELECT endereco, num_casa, bairro, cidade, estado, complemento, cep FROM endereco WHERE id_usuario = '$id_user_login'";
 
     $res2 = $conn -> query($sql2);

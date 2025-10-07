@@ -34,10 +34,9 @@ include("../user/adm/select/dashboard.php")
     </div>
 </div>
 
-<!-- DASHBOARD -->
+
 <div class="container">
     <div class="row g-4">
-        <!-- Clientes Ativos -->
         <div class="col-xl-3 col-lg-6 col-md-6">
             <div class="card shadow-lg border-0 h-100">
                 <div class="card-body p-4">
@@ -55,7 +54,6 @@ include("../user/adm/select/dashboard.php")
             </div>
         </div>
 
-        <!-- Rendimento Atual -->
         <div class="col-xl-3 col-lg-6 col-md-6">
             <div class="card shadow-lg border-0 h-100">
                 <div class="card-body p-4">
@@ -73,7 +71,6 @@ include("../user/adm/select/dashboard.php")
             </div>
         </div>
 
-        <!-- Pedidos em Andamento -->
         <div class="col-xl-3 col-lg-6 col-md-6">
             <div class="card shadow-lg border-0 h-100">
                 <div class="card-body p-4">
@@ -91,7 +88,6 @@ include("../user/adm/select/dashboard.php")
             </div>
         </div>
 
-        <!-- Pedidos Não Confirmados -->
         <div class="col-xl-3 col-lg-6 col-md-6">
             <div class="card shadow-lg border-0 h-100">
                 <div class="card-body p-4">
@@ -110,7 +106,6 @@ include("../user/adm/select/dashboard.php")
         </div>
     </div>
 
-    <!-- Resumo -->
     <div class="row mt-5">
         <div class="col-12">
             <div class="card shadow-lg border-0">
@@ -153,10 +148,8 @@ include("../user/adm/select/dashboard.php")
 
         <div class="row"> 
 
-            <!-- Coluna ESQUERDA - Pedidos não confirmados -->
             <div class="col-md-6 mb-4">
-                <h4 class="mb-3 text-center text-dark">Pedidos não confirmados</h4>
-                 <!-- CARD DE UM PEDIDO --> 
+                <h4 class="mb-3 text-center text-dark">Pedidos não confirmados</h4> 
                   <?php if (empty($pedidos)) { ?> 
                     <div class="alert alert-info">
                         Não existe pedidos aguardando confirmação
@@ -232,10 +225,8 @@ include("../user/adm/select/dashboard.php")
                         <?php } ?>
             </div>
 
-            <!-- Coluna DIREITA - Pedidos em andamento -->
             <div class="col-md-6 mb-4">
-                <h4 class="mb-3 text-center text-warning">Pedidos em andamento</h4>
-                    <!-- CARD DE UM PEDIDO --> 
+                <h4 class="mb-3 text-center text-warning">Pedidos em andamento</h4> 
                      <?php if (empty($pedsAndamento)) { ?> 
                         <div class="alert alert-info">Não existe pedidos em andamento</div> 
                         <?php } else {

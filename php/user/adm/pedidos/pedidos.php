@@ -11,8 +11,7 @@
 
 
 
-    <div class="container my-4">
-    <!-- MENU DE STATUS -->
+<div class="container my-4">
     <ul class="nav nav-tabs mb-4 justify-content-center">
         <li class="nav-item">
             <a class="nav-link active text-secundary" data-bs-toggle="tab" href="#naoConfirmados">Não confirmados</a>
@@ -32,10 +31,8 @@
         </li>
     </ul>
     
-
-    <!-- CONTEÚDO DAS ABAS -->
     <div class="tab-content">
-        <!-- ABA NÃO CONFIRMADOS -->
+
         <div class="tab-pane  show active" id="naoConfirmados">
             <div class="row">
                 <div class="col-md-12">
@@ -115,9 +112,7 @@
             </div>
         </div>
 
-        <!-- OUTRAS ABAS -->
 
-        <!-- Em andamento -->
         <div class="tab-pane " id="emAndamento">
             <h4 class="mb-3 text-center text-warning">Pedidos em andamento</h4>
             <?php if (empty($pedsAndamento)) {?>
@@ -188,8 +183,6 @@
                     <?php }?>
             <?php }?>
         </div>
-        
-        <!-- Finalizados -->
 
         <div class="tab-pane" id="finalizados">
             <h4 class="mb-3 text-center text-success">Pedidos Finalizados</h4>
@@ -259,8 +252,6 @@
             <?php }?> 
         </div>
 
-        <!-- Negados -->
-
         <div class="tab-pane " id="negados">
             <h4 class="mb-3 text-center text-danger">Pedidos negados</h4>
             
@@ -324,8 +315,6 @@
                     <?php }?>
             <?php }?> 
         </div>
-
-        <!-- Cancelados -->
 
         <div class="tab-pane " id="cancelados">
             <h4 class="mb-3 text-center text-danger">Pedidos Cancelados</h4>
