@@ -14,9 +14,13 @@
         if ($row > 0) {
       ?>
       <div class="card-body">
+        <div id="alertStts">
+
+        </div>
         <div class="table-responsive">
           <table class="table table-hover align-middle">
             <thead class="table-primary">
+              
               <tr>
                 <th>ID</th>
                 <th>Nome</th>
@@ -48,7 +52,7 @@
                   <div class="d-flex flex-wrap gap-1">
 
                     
-                      <form action="editar-cliente.php" method="post" class="mb-1">
+                      <form action="editar-cliente.php" id="statusCliente" method="post" class="mb-1">
                         <input type="hidden" name="id_user_editar" value="<?= $user['id_usuario']; ?>">
                         <button type="submit" class="btn btn-sm btn-success ">✏️</button>
                       </form>
@@ -58,10 +62,10 @@
                         <button type="submit" class="btn btn-sm btn-info">📦</button>
                       </form>
 
-                      <form action="../update/status.php" method="post" class="mb-1">
-                        <input type="hidden" name="id_user_status" value="<?= $user['id_usuario']; ?>">
-                        <input type="hidden" name="condicao_status" value="<?= $user['status']; ?>">
-                        <button type="submit" class="btn btn-sm btn-warning">
+                      <form class="mb-1">
+                        <input type="hidden" name="id_user_status" id="id_user_status" value="<?= $user['id_usuario']; ?>">
+                        <input type="hidden" name="condicao_status" id="condicao_status" value="<?= $user['status']; ?>">
+                        <button class="btn btn-sm btn-warning" id="btnMudaSttCLiente" onclick="mudaSttCliente()">
                           <?php
                             if ($user['status'] == 'Ativo') {
                               echo '⛔';
@@ -95,7 +99,7 @@
       </div>
     </div>
   </div>
-
+                
 <?php 
   include("../../../../padrao/footer.php");
 ?>

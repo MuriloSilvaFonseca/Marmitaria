@@ -21,16 +21,11 @@
 
         if ($res == true) {
             echo "<script>alert('Status modificado com sucesso');</script>";
-            
-            echo "<script>location.href='../admClientes/listagem-clientes.php';</script>";
         } else {
             echo "<script>alert('Não foi possivel mudar o status');</script>";
-            echo "<script>location.href='../admClientes/listagem-clientes.php';</script>";
         }
 
     } else {
         echo "<script>alert('Não foi possivel mudar o status');</script>";
-
-        echo "<script>location.href='../admClientes/listagem-clientes.php';</script>";
     }
 ?>
