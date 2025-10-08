@@ -20,7 +20,6 @@
         $res = $conn -> query($sql);
 
         if ($res == true) {
-            echo "<script>alert('Status modificado com sucesso');</script>";
         } else {
             echo "<script>alert('Não foi possivel mudar o status');</script>";
         }
