@@ -20,8 +20,16 @@
         $res = $conn -> query($sql);
 
         if ($res == true) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'status_cliente' => $status == 'Ativo' ? 'Inativo' : 'Ativo',
+                'condicao_status' => $status == 'Ativo' ? 'Inativo' : 'Ativo',
+                'btn_status' =>  $status == 'Ativo' ? '✅' : '⛔'
+            ]);
         } else {
-            echo "<script>alert('Não foi possivel mudar o status');</script>";
+            echo json_encode([
+                'status' => 'erro'
+            ]);
         }
 
     } else {

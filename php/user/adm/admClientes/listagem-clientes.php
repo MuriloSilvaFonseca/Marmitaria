@@ -18,7 +18,7 @@
 
         </div>
         <div class="table-responsive">
-          <table class="table table-hover align-middle">
+          <table class="table table-hover align-middle tabela-json">
             <thead class="table-primary">
               
               <tr>
@@ -41,7 +41,7 @@
                 <td><?= $user['email'] ?> <br> <?= $user['telefone'] ?></td>
                 <td><?= $user['cpf'] ?></td>
                 <td><?= $dataBR = date("d/m/Y", strtotime($user['dt_nascimento'])) ?></td>
-                <td><?= $user['status'] ?></td>
+                <td id="status-cliente-<?= $user['id_usuario'] ?>"><?= $user['status'] ?></td>
                 <td>
                   <form action="listEndereco.php" method="post" class="mb-0">
                     <input type="hidden" name="id_user" value="<?= $envia = $user['id_usuario'];?>">
@@ -49,9 +49,7 @@
                   </form>
                 </td>
                 <td>
-                  <div class="d-flex flex-wrap gap-1">
-
-                    
+                  <div class="d-flex flex-wrap gap-1">                   
                       <form action="editar-cliente.php" id="statusCliente" method="post" class="mb-1">
                         <input type="hidden" name="id_user_editar" value="<?= $user['id_usuario']; ?>">
                         <button type="submit" class="btn btn-sm btn-success ">✏️</button>
@@ -62,27 +60,25 @@
                         <button type="submit" class="btn btn-sm btn-info">📦</button>
                       </form>
 
-                      <form class="mb-1">
-                        <input type="hidden" name="id_user_status" id="id_user_status" value="<?= $user['id_usuario']; ?>">
-                        <input type="hidden" name="condicao_status" id="condicao_status" value="<?= $user['status']; ?>">
-                        <button class="btn btn-sm btn-warning" id="btnMudaSttCLiente" onclick="mudaSttCliente()">
-                          <?php
-                            if ($user['status'] == 'Ativo') {
-                              echo '⛔';
-                            } else {
-                              echo '✅';
-                            }
-                          ?>
-                        </button>
-                      </form>                     
+                      <div class="mb-1">
+                      <input type="hidden" name="id_user_status" class="id_user_status" value="<?= $user['id_usuario']; ?>">
+                      <input type="hidden" name="condicao_status" class="condicao_status" value="<?= $user['status']; ?>">
+                      <button class="btn btn-sm btn-warning btnMudaSttCLiente">
+                        <?php
+                          if ($user['status'] == 'Ativo') {
+                            echo '⛔';
+                          } else {
+                            echo '✅';
+                          }
+                        ?>
+                      </button>
+                        </div>
                                            
-                      <form action="../delete/lista-clientes.php" method="post" class="mb-1">
+                      <div class="mb-1">
                         <input type="hidden" name="id_user_excluir" value="<?= $user['id_usuario']; ?>">
-                        <button type="submit" class="btn btn-sm btn-danger ">🗑️</button>
-                      </form>
-                    
+                        <button type="submit" class="btn btn-sm btn-danger  btnDeleteCLiente">🗑️</button>
+                      </div>                    
                   </div>
-
                 </td>
               </tr>
               <?php 

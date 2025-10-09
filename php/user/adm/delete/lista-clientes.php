@@ -3,7 +3,6 @@
 
     $id_usuario = $_REQUEST['id_user_excluir'];
     
-
     if (isset($id_usuario)) {
         $deleteEndereco = "DELETE FROM endereco
                 WHERE id_usuario = '$id_usuario'";
@@ -21,11 +20,12 @@
             $res2 = $conn -> query($deleteUser);
 
             if ($res == true && $res2 == true) {
-                echo "<script>alert('Excluido com sucesso')</script>";
-                echo "<script>location.href='../admClientes/listagem-clientes.php';</script>";
+                echo json_encode([
+                    'status' => 'sucesso'
+                ]);
+                
             } else {
-                echo "<script>alert('Não foi possivel excluir');</script>";
-                echo "<script>location.href='../admClientes/listagem-clientes.php';</script>";
+                
             }
 
         } else {
