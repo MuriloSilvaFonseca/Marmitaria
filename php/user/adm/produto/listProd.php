@@ -41,20 +41,20 @@
                 <td><?= $user['qtd_est'] ?></td>
                 <td><?= $dataBR = date("d/m/Y", strtotime($user['dt_aquisicao'])) ?></td>
                 <td><?= $dataBR = date("d/m/Y", strtotime($user['dt_venc'])) ?></td>
-                <td><?= $user['status'] ?></td>
+                <td id="status-produto-<?=$user['id_produto']?>"><?= $user['status'] ?></td>
 
                 <td>
                   <div class="d-flex flex-wrap gap-1">
 
-                    <form action="editarProd.php" method="post" class="mb-0">
+                    <form action="" method="post" class="mb-0">
                       <input type="hidden" name="id_prod_editar" value="<?= $user['id_produto']; ?>">
                       <button type="submit" class="btn btn-sm btn-success">✏️</button>
                     </form>
 
-                    <form action="../update/statusProd.php" method="post" class="mb-0">
+                    <div class="mb-0">
                       <input type="hidden" name="id_produto" value="<?= $user['id_produto']; ?>">
                       <input type="hidden" name="condicao_status" value="<?= $user['status']; ?>">
-                      <button type="submit" class="btn btn-sm btn-warning">
+                      <button type="submit" class="btn btn-sm btn-warning btnMudaProduto">
                         <?php 
                           if ($user['status'] == 'Disponível') {
                             echo '⛔';
@@ -63,7 +63,7 @@
                           }
                         ?>
                       </button>
-                    </form>
+                        </div>
                   </div>
 
                 </td>

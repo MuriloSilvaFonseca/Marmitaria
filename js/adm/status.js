@@ -2,10 +2,10 @@ $(document).ready(function(){
 
     $('.btnMudaSttCLiente').click(function(){   
         const btnStt = $(this)[0];
-        var inputsCliente = $(btnStt).siblings();
+        let inputsCliente = $(btnStt).siblings();
 
-        var id_user_status = $(inputsCliente[0]).val();
-        var condicao_status = $(inputsCliente[1]).val();
+        let id_user_status = $(inputsCliente[0]).val();
+        let condicao_status = $(inputsCliente[1]).val();
 
         $.ajax({
             url:"/Marmitaria/php/user/adm/update/status.php",
@@ -38,8 +38,8 @@ $(document).ready(function(){
 
     $('.btnDeleteCLiente').click(function(){
         const btnDel = $(this)[0];
-        var inputDel = $(btnDel).prev();
-        var id_user_excluir = $(inputDel).val();
+        let inputDel = $(btnDel).prev();
+        let id_user_excluir = $(inputDel).val();
         const tableDel = $(".tabela-json");
 
         $.ajax({
@@ -53,5 +53,30 @@ $(document).ready(function(){
                 
             }
         });
+    });
+
+    $('.btnMudaProduto').click(function(){
+        const btnMuda = $(this)[0];
+
+        let inputsProduto = $(btnMuda).siblings();
+
+        let id_produto = $(inputsProduto[0]).val();
+        let condicao_status = $(inputsProduto[1]).val();
+
+        $.ajax({
+            url: "/Marmitaria/php/user/adm/update/statusProd.php",
+            method: "post",
+            data: {id_produto: id_produto, condicao_status: condicao_status},
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+
+                const colunaStatusProd = $("#status-produto-"+id_produto);
+                $(colunaStatusProd).text(response.status_produto);
+                $()
+                
+            }
+        });
+        
     });
 });
