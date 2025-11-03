@@ -19,6 +19,7 @@
 
         $res = $conn -> query($sql);
 
+        
         if ($res == true) {
             echo json_encode([
                 'status' => 'sucesso',
