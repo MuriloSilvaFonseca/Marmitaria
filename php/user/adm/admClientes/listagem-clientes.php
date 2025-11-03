@@ -76,7 +76,7 @@
                                            
                       <div class="mb-1">
                         <input type="hidden" name="id_user_excluir" value="<?= $user['id_usuario']; ?>">
-                        <button type="submit" class="btn btn-sm btn-danger  btnDeleteCLiente">🗑️</button>
+                        <button type="submit" class="btn btn-sm btn-danger btnDeleteCLiente">🗑️</button>
                       </div>                    
                   </div>
                 </td>

@@ -46,7 +46,7 @@
                 <td>
                   <div class="d-flex flex-wrap gap-1">
 
-                    <form action="" method="post" class="mb-0">
+                    <form action="editarProd.php" method="post" class="mb-0">
                       <input type="hidden" name="id_prod_editar" value="<?= $user['id_produto']; ?>">
                       <button type="submit" class="btn btn-sm btn-success">✏️</button>
                     </form>
