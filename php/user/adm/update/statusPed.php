@@ -20,6 +20,9 @@
         if ($res == true) {
             echo "<script>alert('O pedido está Em andamento');</script>";
             if ($saida == 'home-adm') {
+                echo json_encode([
+                    'status' => 'sucesso'
+                ]);
                 echo "<script>location.href = '../../../home/home-adm.php';</script>";
             } else {
                 echo "<script>location.href = '../pedidos/pedidos.php';</script>";
