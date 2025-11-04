@@ -159,13 +159,17 @@ include("../user/adm/select/dashboard.php")
                 } else {
                     foreach ($pedidos as $id => $pedido) {
                     ?>
-                        <div class="card shadow-sm mb-3 bg-light">
+                        <div class="card shadow-sm mb-3 bg-light" id="card-naoConf-<?=$id?>">
                             <div class="card-header bg-secondary text-light">
                                 <div class="d-flex justify-content-between">
                                     <h5 class="mb-0">Pedido #<?= $id ?></h5>
                                     <h5>Cliente: <?= $pedido['nome_usuario'] ?></h5>
                                 </div>
-                                <small>Status: <span class="badge bg-light text-dark">Aguardando Confirmação</span></small>
+
+                                <div class="d-flex justify-content-between">
+                                    <small>Status: <span class="badge bg-light text-dark">Aguardando Confirmação</span></small>
+                                    <small></small>
+                                </div>
                             </div>
 
                             <div class="card-body">
@@ -206,18 +210,18 @@ include("../user/adm/select/dashboard.php")
                                 </div>
 
                                 <div class="text-end mt-3 d-flex justify-content-end">
-                                    <form action="../user/adm/update/statusPed.php" method="post">
+                                    <!-- <form action="../user/adm/update/statusPed.php" method="post"> -->
                                         <input type="hidden" name="sttMod" value="Negado">
                                         <input type="hidden" name="id_pedido" value="<?= $id ?>">
-                                        <button class="btn btn-danger btn-sm">Negar Pedido</button>
-                                    </form>
+                                        <button class="btn btn-danger btn-sm negar-btn">Negar Pedido</button>
+                                    <!-- </form> -->
 
-                                    
-                                        <input type="hidden" name="sttMod" value="Em andamento" id="sttMod">
-                                        <input type="hidden" name="saida" id="saida" value="home-adm">
-                                        <input type="hidden" name="id_pedido" value="<?= $id ?>">
-                                        <button class="btn btn-success btn-sm ms-2 confPedido-btn">Confirmar Pedido</button>
-                                    
+
+                                    <input type="hidden" name="sttMod" value="Em andamento" id="sttMod">
+                                    <input type="hidden" name="saida" id="saida" value="home-adm">
+                                    <input type="hidden" name="id_pedido" value="<?= $id ?>">
+                                    <button class="btn btn-success btn-sm ms-2 confPedido-btn >">Confirmar Pedido</button>
+
                                 </div>
                             </div>
                         </div>
@@ -228,12 +232,14 @@ include("../user/adm/select/dashboard.php")
 
             <!-- EM ANDAMENTO -->
 
-            <div class="col-md-6 mb-4">
-                <h4 class="mb-3 text-center text-warning">Pedidos em andamento</h4>
+            <div class="col-md-6 mb-4 conj-card-emAndamento">
+                <h4 class="mb-3 text-center text-warning titulo-emAndamento">Pedidos em andamento</h4>
                 <?php if (empty($pedsAndamento)) { ?>
                     <div class="alert alert-info">Não existe pedidos em andamento</div>
                     <?php } else {
+
                     foreach ($pedsAndamento as $idAnd => $pediAndamento) { ?>
+
                         <div class="card shadow-sm mb-3">
                             <div class="card-header bg-warning text-white">
                                 <div class="d-flex justify-content-between">
@@ -281,9 +287,9 @@ include("../user/adm/select/dashboard.php")
                                     </table>
                                 </div>
                                 <div class="text-end mt-3">
-                                        <input type="hidden" name="sttMod" value="Finalizado">
-                                        <input type="hidden" name="id_pedido" value="<?= $idAnd ?>">
-                                        <button class="btn btn-success btn-sm ms-2">Finalizar pedido</button>
+                                    <input type="hidden" name="sttMod" id="sttMod" value="Finalizado">
+                                    <input type="hidden" name="id_pedido" id="id_pedido" value="<?= $idAnd ?>">
+                                    <button class="btn btn-success btn-sm ms-2 finPedido-btn">Finalizar pedido</button>
                                 </div>
                             </div>
                         </div>

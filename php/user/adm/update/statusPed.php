@@ -18,12 +18,12 @@
         $res = $conn -> query($sql);
 
         if ($res == true) {
-            echo "<script>alert('O pedido está Em andamento');</script>";
             if ($saida == 'home-adm') {
                 echo json_encode([
-                    'status' => 'sucesso'
+                    'status' => 'success',
+                    'id_pedido_resp' => $id_pedido,
+                    'data_inicio' => date('d/m/Y H:i', strtotime($data_comeco))
                 ]);
-                echo "<script>location.href = '../../../home/home-adm.php';</script>";
             } else {
                 echo "<script>location.href = '../pedidos/pedidos.php';</script>";
             }
