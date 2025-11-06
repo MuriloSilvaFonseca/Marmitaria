@@ -18,6 +18,10 @@ $(document).ready(function() {
             success: function(response) {
                 console.log(response);
 
+                if ($(".naoExisteAnd")) {
+                    $(".naoExisteAnd").remove();
+                }
+
 
                 var card_mod = $("#card-naoConf-" + response.id_pedido_resp);
                 var conj_card_emAndamento = $(".conj-card-emAndamento");
@@ -39,6 +43,19 @@ $(document).ready(function() {
 
                 btnConfPedido.removeClass(".confPedido-btn").addClass("finPedido-btn");
                 btnConfPedido.text("Finalizar Pedido");
+
+                var conj_card_emAndamento = $(".conj-card-naoConf");
+
+                console.log(conj_card_emAndamento.length);
+                return
+
+                if(conj_card_emAndamento.length == "2")
+
+                Swal.fire({
+                    title: "Pedido Confirmado!",
+                    text: "Seu pedido está em andamento.",
+                    icon: "success"
+                });
             },
             error: function(response) {
 
@@ -47,24 +64,41 @@ $(document).ready(function() {
     });
 
     $(".finPedido-btn").click(function(){
-        const btnFinPedido = $(this)[0];
-        let sttMod = btnFinPedido.siblings("#sttMod");
-        let id_pedido = btnFinPedido.siblings("#id_pedido");
-
+        const btnFinPedido = $(this);
+        let sttMod = btnFinPedido.siblings("#sttMod").val();
+        let id_pedido = btnFinPedido.siblings("#id_pedido").val();
+        
         $.ajax({
-            // AQUI
-            url: ,
+            url: "/Marmitaria/php/user/adm/update/statusPed.php",
             method: "post",
             data: {
-
+                sttMod: sttMod, id_pedido: id_pedido
             },
             dataType: "json",
             success: function(response) {
 
+                console.log(response);
+                
+
+                if (response.status == 'sucesso') {
+                    Swal.fire({
+                        title: "Pedido Finalizado",
+                        text: "Você será encaminhado para o histórico.",
+                        icon: "success"
+                    });
+
+                    location.href = "/Marmitaria/php/user/adm/pedidos/pedidos.php";
+                } else {
+                    Swal.fire({
+                        title: "Algo deu errado",
+                        text: "Erro na resposta do banco. Tente Novamente",
+                        icon: "error"
+                    });
+                }
             },
             error: function(response) {
-
-            }
+                console.log("fudeu");
+            }            
         });
     });
 });

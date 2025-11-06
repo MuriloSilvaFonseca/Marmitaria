@@ -4,11 +4,9 @@
 
     $sttMod = $_REQUEST['sttMod'];
     $id_pedido = $_REQUEST['id_pedido'];
-    $saida = $_REQUEST['saida'];
+    $saida = isset($_REQUEST['saida']) ? $_REQUEST['saida'] : null;
 
     $capDatetime = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
-
-    
 
     if($sttMod =='Em andamento') {
 
@@ -39,23 +37,27 @@
 
     } elseif ($sttMod == 'Finalizado'){
 
+        
         $data_final = $capDatetime->format('Y-m-d H:i:s');
-
+        
         $sql = "UPDATE pedido SET status = '$sttMod', data_final = '$data_final' WHERE id_pedido = '$id_pedido'";
-
+        
         $res = $conn -> query($sql);
 
         if ($res == true) {
-            echo "<script>alert('O pedido foi finalizado');</script>";
-            echo "<script>location.href = '../pedidos/pedidos.php';</script>";
+            echo json_encode([
+                'status' => 'sucesso'
+            ]);
         } else {
-            echo "<script>alert('O pedido foi possível finalizar o pedido');</script>";
-            echo "<script>location.href = '../pedidos/pedidos.php';</script>";
+            echo json_encode([
+                'status' => 'erro'
+            ]);
         }
         
     } else {
-        echo "<script>alert('Não foi possível realizar essa ação');</script>";
-        // echo "<script>location.href = '../pedidos/pedidos.php';</script>";
+        echo json_encode([
+            'status' => 'erro'
+        ]);
     }
 ?>
 

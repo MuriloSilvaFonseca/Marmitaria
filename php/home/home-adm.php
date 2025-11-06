@@ -148,7 +148,7 @@ include("../user/adm/select/dashboard.php")
 
         <div class="row">
 
-            <div class="col-md-6 mb-4">
+            <div class="col-md-6 mb-4 conj-card-naoConf">
                 <h4 class="mb-3 text-center text-dark">Pedidos não confirmados</h4>
                 <?php if (empty($pedidos)) { ?>
                     <div class="alert alert-info">
@@ -235,7 +235,7 @@ include("../user/adm/select/dashboard.php")
             <div class="col-md-6 mb-4 conj-card-emAndamento">
                 <h4 class="mb-3 text-center text-warning titulo-emAndamento">Pedidos em andamento</h4>
                 <?php if (empty($pedsAndamento)) { ?>
-                    <div class="alert alert-info">Não existe pedidos em andamento</div>
+                    <div class="alert alert-info naoExisteAnd">Não existe pedidos em andamento</div>
                     <?php } else {
 
                     foreach ($pedsAndamento as $idAnd => $pediAndamento) { ?>
@@ -287,6 +287,7 @@ include("../user/adm/select/dashboard.php")
                                     </table>
                                 </div>
                                 <div class="text-end mt-3">
+            
                                     <input type="hidden" name="sttMod" id="sttMod" value="Finalizado">
                                     <input type="hidden" name="id_pedido" id="id_pedido" value="<?= $idAnd ?>">
                                     <button class="btn btn-success btn-sm ms-2 finPedido-btn">Finalizar pedido</button>
