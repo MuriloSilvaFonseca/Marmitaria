@@ -6,6 +6,7 @@
     $id_pedido = $_REQUEST['id_pedido'];
     $saida = isset($_REQUEST['saida']) ? $_REQUEST['saida'] : null;
 
+
     $capDatetime = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
 
     if($sttMod =='Em andamento') {
@@ -36,7 +37,6 @@
         echo "<script>location.href = '../pedidos/motivo.php';</script>";
 
     } elseif ($sttMod == 'Finalizado'){
-
         
         $data_final = $capDatetime->format('Y-m-d H:i:s');
         

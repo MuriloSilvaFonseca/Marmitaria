@@ -2,9 +2,11 @@ $(document).ready(function() {
 
     $(".confPedido-btn").click(function(){
         const btnConfPedido = $(this);
-        let id_pedido = btnConfPedido.prev().val();
+        var id_pedido = btnConfPedido.prev().val();
         let sttMod = btnConfPedido.siblings("#sttMod").val();
         let saida = btnConfPedido.siblings("#saida").val();
+        let conj_card_naoConf = $(".conj-card-naoConf");
+        
 
         $.ajax({
             url: "/Marmitaria/php/user/adm/update/statusPed.php", 
@@ -22,6 +24,7 @@ $(document).ready(function() {
                     $(".naoExisteAnd").remove();
                 }
 
+                var tamanhoConf = conj_card_naoConf.children().length;
 
                 var card_mod = $("#card-naoConf-" + response.id_pedido_resp);
                 var conj_card_emAndamento = $(".conj-card-emAndamento");
@@ -41,15 +44,12 @@ $(document).ready(function() {
                 let botaoNegar = btnConfPedido.siblings(".negar-btn");
                 botaoNegar.remove();
 
-                btnConfPedido.removeClass(".confPedido-btn").addClass("finPedido-btn");
+                btnConfPedido.removeClass("confPedido-btn").addClass("finPedido-btn");
                 btnConfPedido.text("Finalizar Pedido");
 
-                var conj_card_emAndamento = $(".conj-card-naoConf");
-
-                console.log(conj_card_emAndamento.length);
-                return
-
-                if(conj_card_emAndamento.length == "2")
+                if(tamanhoConf == 2) {
+                    conj_card_naoConf.append("<div class='alert alert-info'>Não existe pedidos aguardando confirmação</div>");
+                }
 
                 Swal.fire({
                     title: "Pedido Confirmado!",
@@ -61,9 +61,11 @@ $(document).ready(function() {
 
             }
         });
+
+        
     });
 
-    $(".finPedido-btn").click(function(){
+    $(document).on("click", ".finPedido-btn",function(){
         const btnFinPedido = $(this);
         let sttMod = btnFinPedido.siblings("#sttMod").val();
         let id_pedido = btnFinPedido.siblings("#id_pedido").val();
@@ -85,9 +87,12 @@ $(document).ready(function() {
                         title: "Pedido Finalizado",
                         text: "Você será encaminhado para o histórico.",
                         icon: "success"
+                    }).then((result) => {
+                        if (result.isConfirmed || result.isDismissed) {
+                            location.href = "/Marmitaria/php/user/adm/pedidos/pedidos.php";
+                        }
                     });
 
-                    location.href = "/Marmitaria/php/user/adm/pedidos/pedidos.php";
                 } else {
                     Swal.fire({
                         title: "Algo deu errado",
@@ -97,7 +102,7 @@ $(document).ready(function() {
                 }
             },
             error: function(response) {
-                console.log("fudeu");
+                console.log("erro");
             }            
         });
     });

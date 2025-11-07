@@ -27,19 +27,19 @@
         $res = $conn -> query($sql);
 
         if ($res == true) {
-            echo "<script>alert('Cadastrado com sucesso');</script>";
-
-            echo "<script>location.href='../produto/listProd.php';</script>";
+            echo json_encode([
+                "status" => "success"
+            ]);
         } else {
-            echo "<script>alert('Não foi possível cadastrar');</script>";
-
-            echo "<script>location.href='../produto/cadProduto.php';</script>";
+            echo json_encode([
+                "status" => "Erro ao inserir"
+            ]);
         }
 
     } else {
-        echo "<script>alert('Não foi possível cadastrar');</script>";
-
-        echo "<script>location.href='../produto/cadProduto.php';</script>";
+        echo json_encode([
+            "status" => "Erro ao verificar"
+        ]);
     }
 
 ?>
