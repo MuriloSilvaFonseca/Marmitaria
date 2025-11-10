@@ -14,7 +14,46 @@ include("../select/produto.php");
     <?php
     if ($row > 0) {
     ?>
-      <div class="card-body">
+
+      <div class="container my-4">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h5 class="card-title mb-1">Marmita PP</h5>
+                <p class="text-muted mb-2">Categoria: <span class="fw-semibold">LowCarb</span></p>
+              </div>
+              <div>
+                <span class="badge bg-success">Disponível</span>
+              </div>
+            </div>
+
+            <ul class="list-unstyled mb-3">
+              <li><strong>Valor:</strong> R$ 14,99</li>
+              <li><strong>Quantidade:</strong> 994</li>
+              <li><strong>Data de Aquisição:</strong> 09/09/2025</li>
+              <li><strong>Data de Vencimento:</strong> 30/09/2025</li>
+            </ul>
+
+            <p class="mb-3">
+              <strong>Descrição:</strong><br>
+              Marmita pequena balanceada: arroz integral, feijão, peito de frango grelhado e mix de legumes. Nutrição e sabor na medida certa.
+            </p>
+
+            <div class="d-flex gap-2">
+              <button class="btn btn-success btn-sm">
+                <i class="bi bi-pencil-square"></i> Editar
+              </button>
+              <button class="btn btn-danger btn-sm">
+                <i class="bi bi-trash"></i> Excluir
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- <div class="card-body">
         <div class="table-responsive">
           <table class="table table-hover align-middle">
             <thead class="table-primary">
@@ -74,18 +113,18 @@ include("../select/produto.php");
                     <b>Descrição:</b><br>
                     <?= $user['descricao'] ?>
                   </td>
-                </tr>
-            <?php
+                </tr> -->
+  <?php
               }
             } else {
-              echo "<p class='p-3 mb-0'><b>Não tem clientes cadastrados</b></p>";
+              echo "<p class='p-3 mb-0'><b>Não tem produtos cadastrados</b></p>";
             }
-            ?>
-            </tbody>
-          </table>
-        </div>
-      </div>
+  ?>
+  </tbody>
+  </table>
   </div>
+</div>
+</div>
 </div>
 
 <!-- MODAL  -->
@@ -99,49 +138,49 @@ include("../select/produto.php");
       </div>
 
       <div class="modal-body">
-          <div class="mb-3">
-            <label class="form-label">Nome do produto</label>
-            <input type="text" name="nome_produto" id="nome_produto" class="form-control" placeholder="Marmita P" required>
-          </div>
+        <div class="mb-3">
+          <label class="form-label">Nome do produto</label>
+          <input type="text" name="nome_produto" id="nome_produto" class="form-control" placeholder="Marmita P" required>
+        </div>
 
-          <div class="mb-3">
-              <label for="descricao" class="form-label">Descrição</label>
-              <textarea id="descricao" name="descricao" id="descricao" class="form-control" rows="5" placeholder="Digite a descrição..." required></textarea>
-          </div>
+        <div class="mb-3">
+          <label for="descricao" class="form-label">Descrição</label>
+          <textarea id="descricao" name="descricao" id="descricao" class="form-control" rows="5" placeholder="Digite a descrição..." required></textarea>
+        </div>
 
-          <div class="mb-3">
-              <label class="form-label">Valor (R$)</label>
-              <input type="text" name="valor_prod" id="valor_prod" class="form-control" id='valor' placeholder="19,99" required>
-          </div>
+        <div class="mb-3">
+          <label class="form-label">Valor (R$)</label>
+          <input type="text" name="valor_prod" id="valor_prod" class="form-control" id='valor' placeholder="19,99" required>
+        </div>
 
-          <div class="mb-3">
-              <label for="Categoria" class="form-label">Categoria</label>
-              <select class="form-select" id="categoria" name="categoria" required>
-                  <option selected value="Comum">Comum</option>
-                  <option value="Fitness">Fitness</option>
-                  <option value="LowCarb">LowCarb</option>
-                  <option value="Vegetariano">Vegetariano</option>
-                  <option value="Vegano">Vegano</option>
-              </select>
-          </div>
+        <div class="mb-3">
+          <label for="Categoria" class="form-label">Categoria</label>
+          <select class="form-select" id="categoria" name="categoria" required>
+            <option selected value="Comum">Comum</option>
+            <option value="Fitness">Fitness</option>
+            <option value="LowCarb">LowCarb</option>
+            <option value="Vegetariano">Vegetariano</option>
+            <option value="Vegano">Vegano</option>
+          </select>
+        </div>
 
-          <div class="mb-3">
-              <label class="form-label">Quantidade</label>
-              <input type="number" name="qtd_est" id="qtd_est" class="form-control" placeholder="5" required>
-          </div>
+        <div class="mb-3">
+          <label class="form-label">Quantidade</label>
+          <input type="number" name="qtd_est" id="qtd_est" class="form-control" placeholder="5" required>
+        </div>
 
-          <div class="mb-3">
-              <label class="form-label">Data de Aquisição</label>
-              <input type="date" name="dt_aquisicao" id="dt_aquisicao" class="form-control" placeholder="12/06/2025" required>
-          </div>
+        <div class="mb-3">
+          <label class="form-label">Data de Aquisição</label>
+          <input type="date" name="dt_aquisicao" id="dt_aquisicao" class="form-control" placeholder="12/06/2025" required>
+        </div>
 
-          <div class="mb-3">
-              <label class="form-label">Data de Vencimento</label>
-              <input type="date" name="dt_venc" id="dt_venc" class="form-control" placeholder="23/07/2025">
-          </div>
+        <div class="mb-3">
+          <label class="form-label">Data de Vencimento</label>
+          <input type="date" name="dt_venc" id="dt_venc" class="form-control" placeholder="23/07/2025">
+        </div>
 
-          <input type="hidden" name="status" id="status" value="Disponível">
-        
+        <input type="hidden" name="status" id="status" value="Disponível">
+
       </div>
 
       <div class="modal-footer">
