@@ -27,8 +27,15 @@
         $res = $conn -> query($sql);
 
         if ($res == true) {
+            $valor_formatado = number_format($valor_prod, 2, ',', '.');
+            $data_aqui_formatada = date("d/m/Y", strtotime($dt_aquisicao));
+            $data_venc_formatada = date("d/m/Y", strtotime($dt_venc));
+
             echo json_encode([
-                "status" => "success"
+                "status" => "success",
+                "valor_formatado" => $valor_formatado,
+                "data_aqui_formatada" => $data_aqui_formatada,
+                "data_venc_formatada" => $data_venc_formatada  
             ]);
         } else {
             echo json_encode([

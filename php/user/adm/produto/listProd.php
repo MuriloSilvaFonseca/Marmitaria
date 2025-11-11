@@ -11,120 +11,88 @@ include("../select/produto.php");
       <h4 class="mb-0">Listagem de Produtos</h4>
       <button class="btn btn-light btn-sm" id="cadProd">Cadastrar Produto</button>
     </div>
-    <?php
-    if ($row > 0) {
-    ?>
+    <div class="container my-4">
+      <div class="row g-4 conj_card_prod">
+        <?php
+        if ($row > 0) {
+        ?>
+          <?php
+          foreach ($lista as $user) { ?>
 
-      <div class="container my-4">
-        <div class="card shadow-sm border-0">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <h5 class="card-title mb-1">Marmita PP</h5>
-                <p class="text-muted mb-2">Categoria: <span class="fw-semibold">LowCarb</span></p>
-              </div>
-              <div>
-                <span class="badge bg-success">Disponível</span>
-              </div>
-            </div>
-
-            <ul class="list-unstyled mb-3">
-              <li><strong>Valor:</strong> R$ 14,99</li>
-              <li><strong>Quantidade:</strong> 994</li>
-              <li><strong>Data de Aquisição:</strong> 09/09/2025</li>
-              <li><strong>Data de Vencimento:</strong> 30/09/2025</li>
-            </ul>
-
-            <p class="mb-3">
-              <strong>Descrição:</strong><br>
-              Marmita pequena balanceada: arroz integral, feijão, peito de frango grelhado e mix de legumes. Nutrição e sabor na medida certa.
-            </p>
-
-            <div class="d-flex gap-2">
-              <button class="btn btn-success btn-sm">
-                <i class="bi bi-pencil-square"></i> Editar
-              </button>
-              <button class="btn btn-danger btn-sm">
-                <i class="bi bi-trash"></i> Excluir
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <!-- <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-hover align-middle">
-            <thead class="table-primary">
-              <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Valor (R$)</th>
-                <th>Categoria</th>
-                <th>Quantidade</th>
-                <th>Data de Aquisição</th>
-                <th>Data de Vencimento</th>
-                <th>Status</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php
-              foreach ($lista as $user) { ?>
-                <tr>
-                  <td><?= $user['id_produto'] ?></td>
-                  <td><?= $user['nome_produto'] ?></td>
-                  <td>R$ <?= number_format($user['valor_prod'], 2, ',', '.') ?> </td>
-                  <td><?= $user['categoria'] ?></td>
-                  <td><?= $user['qtd_est'] ?></td>
-                  <td><?= $dataBR = date("d/m/Y", strtotime($user['dt_aquisicao'])) ?></td>
-                  <td><?= $dataBR = date("d/m/Y", strtotime($user['dt_venc'])) ?></td>
-                  <td id="status-produto-<?= $user['id_produto'] ?>"><?= $user['status'] ?></td>
-
-                  <td>
-                    <div class="d-flex flex-wrap gap-1">
-
-                      <form action="editarProd.php" method="post" class="mb-0">
-                        <input type="hidden" name="id_prod_editar" value="<?= $user['id_produto']; ?>">
-                        <button type="submit" class="btn btn-sm btn-success">✏️</button>
-                      </form>
-
-                      <div class="mb-0">
-                        <input type="hidden" name="id_produto" value="<?= $user['id_produto']; ?>">
-                        <input type="hidden" name="condicao_status" value="<?= $user['status']; ?>">
-                        <button type="submit" class="btn btn-sm btn-warning btnMudaProduto">
-                          <?php
-                          if ($user['status'] == 'Disponível') {
-                            echo '⛔';
-                          } else {
-                            echo '✅';
-                          }
-                          ?>
-                        </button>
-                      </div>
+            <!-- Card 1 -->
+            <div class="col-12 col-md-6">
+              <div class="card shadow border-0 h-100">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <small class="text-muted">ID: <strong><?= $user['id_produto'] ?></strong></small>
+                      <h5 class="card-title mb-1 mt-1"><?= $user['nome_produto'] ?></h5>
+                      <p class="text-muted mb-2">Categoria: <span class="fw-semibold"><?= $user['categoria'] ?></span></p>
                     </div>
 
-                  </td>
-                </tr>
+                    <?php 
+                      if($user['status'] == 'Disponível') {
+                    ?>
+                      <span class="badge bg-success" id="status-produto-<?= $user['id_produto'] ?>"><?= $user['status'] ?></span>
+                    <?php 
+                      } else {
+                    ?>
+                      <span class="badge bg-warning" id="status-produto-<?= $user['id_produto'] ?>"><?= $user['status'] ?></span>
+                    <?php
+                      }
+                    ?>
+                      
+                    
+                    
+                  </div>
 
-                <tr>
-                  <td colspan="9" style="padding-bottom: 20px;">
-                    <b>Descrição:</b><br>
+                  <ul class="list-unstyled mb-3">
+                    <li><strong>Valor:</strong> <?= number_format($user['valor_prod'], 2, ',', '.') ?></li>
+                    <li><strong>Quantidade:</strong> <?= $user['qtd_est'] ?></li>
+                    <li><strong>Data de Aquisição:</strong> <?= $dataBR = date("d/m/Y", strtotime($user['dt_aquisicao'])) ?></li>
+                    <li><strong>Data de Vencimento:</strong> <?= $dataBR = date("d/m/Y", strtotime($user['dt_venc'])) ?></li>
+                  </ul>
+
+                  <p class="mb-3">
+                    <strong>Descrição:</strong><br>
                     <?= $user['descricao'] ?>
-                  </td>
-                </tr> -->
-  <?php
-              }
-            } else {
-              echo "<p class='p-3 mb-0'><b>Não tem produtos cadastrados</b></p>";
-            }
-  ?>
-  </tbody>
-  </table>
+                  </p>
+
+                  <div class="d-flex gap-2">
+                    <form action="editarProd.php" method="post" class="mb-0">
+                      <input type="hidden" name="id_prod_editar" value="<?= $user['id_produto']; ?>">
+                      <button type="submit" class="btn btn-sm btn-success">✏️</button>
+                    </form>
+                    
+                    <div class="container_remover">
+                      <input type="hidden" name="id_prod_remover" id="id_prod_remover" value="<?= $user['id_produto']; ?>">
+                      <button class="btn btn-danger btn-sm removerBtn">🗑️</button>
+                    </div>
+
+                    <button type="submit" class="btn btn-sm btn-warning btnMudaProduto">
+                      <?php
+                      if ($user['status'] == 'Disponível') {
+                        echo '⛔';
+                      } else {
+                        echo '✅';
+                      }
+                      ?>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <?php
+          }
+        } else {
+          echo "<p class='p-3 mb-0'><b>Não tem produtos cadastrados</b></p>";
+        }
+        ?>
+      </div>
+    </div>
+    </tbody>
+    </table>
   </div>
-</div>
-</div>
 </div>
 
 <!-- MODAL  -->
@@ -193,7 +161,9 @@ include("../select/produto.php");
   </div>
 </div>
 
-
+<script src="/Marmitaria/js/adm/status.js"></script>
+<script src="/Marmitaria/js/adm/modal/cadastroProd.js"></script>
+<script src="/Marmitaria/js/adm/acaoProd/excluir.js"></script>
 <?php
 include('../../../../padrao/footer.php');
 ?>
