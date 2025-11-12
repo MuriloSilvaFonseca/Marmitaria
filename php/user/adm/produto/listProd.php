@@ -3,6 +3,8 @@ include("../../../../padrao/header.php");
 include("../../../../padrao/nav.php");
 include("../../../../padrao/conexao.php");
 include("../select/produto.php");
+include("/Marmitaria/php/user/adm/update/test-idProd.php");
+
 ?>
 
 <div class="container py-5">
@@ -20,7 +22,7 @@ include("../select/produto.php");
           foreach ($lista as $user) { ?>
 
             <!-- Card 1 -->
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 card_produto">
               <div class="card shadow border-0 h-100">
                 <div class="card-body">
                   <div class="d-flex justify-content-between align-items-start">
@@ -59,10 +61,11 @@ include("../select/produto.php");
                   </p>
 
                   <div class="d-flex gap-2">
-                    <form action="editarProd.php" method="post" class="mb-0">
+
+                    
                       <input type="hidden" name="id_prod_editar" value="<?= $user['id_produto']; ?>">
-                      <button type="submit" class="btn btn-sm btn-success">✏️</button>
-                    </form>
+                      <button type="submit" class="btn btn-sm btn-success editarBtn">✏️</button>
+                    
                     
                     <div class="container_remover">
                       <input type="hidden" name="id_prod_remover" id="id_prod_remover" value="<?= $user['id_produto']; ?>">
@@ -95,7 +98,7 @@ include("../select/produto.php");
   </div>
 </div>
 
-<!-- MODAL  -->
+<!-- MODAL  CADASTRAR -->
 
 <div class="modal fade" id="modalCadastroProd" aria-labelledby="modalMotivoLabel" aria-hidden="true">
   <div class="modal-dialog modal-custom">
@@ -161,9 +164,77 @@ include("../select/produto.php");
   </div>
 </div>
 
+<!-- MODAL EDITAR  -->
+
+<div class="modal fade" id="modalEditarProd" aria-labelledby="modalMotivoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-custom">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalMotivoLabel">Editar Produto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Nome do produto</label>
+          <input type="text" name="nome_produto" id="nome_produto" value="<?= $preenche['nome_produto'] ?>" class="form-control" placeholder="Marmita P" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="descricao" class="form-label">Descrição</label>
+          <textarea id="descricao" name="descricao" id="descricao" value= "<?= $preenche['descricao']?>" class="form-control" rows="5" placeholder="Digite a descrição..." required></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Valor (R$)</label>
+          <input type="text" name="valor_prod" id="valor_prod" value="<?= $preenche['valor_prod'] ?>" class="form-control" id='valor' placeholder="19,99" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="Categoria" class="form-label">Categoria</label>
+          <select class="form-select" id="categoria" name="categoria" value="<?= $preenche['categoria'] ?>" required>
+            <option value="<?= $preenche['categoria'] ?>"><?= $preenche['categoria'] ?></option>
+            <option selected value="Comum">Comum</option>
+            <option value="Fitness">Fitness</option>
+            <option value="LowCarb">LowCarb</option>
+            <option value="Vegetariano">Vegetariano</option>
+            <option value="Vegano">Vegano</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Quantidade</label>
+          <input type="number" name="qtd_est" id="qtd_est" class="form-control" value="<?= $preenche['qtd_est'] ?>" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Data de Aquisição</label>
+          <input type="date" name="dt_aquisicao" id="dt_aquisicao" class="form-control" value="<?= $preenche['dt_aquisicao'] ?>" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Data de Vencimento</label>
+          <input type="date" name="dt_venc" id="dt_venc" class="form-control" value="<?= $preenche['dt_aquisicao'] ?>" required>
+        </div>
+
+        <input type="hidden" name="id_prod" id="id_prod" value="<?=$id_produto?>">
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+        <button type="button" class="btn btn-primary" id="enviarEditar-btn">Salvar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script src="/Marmitaria/js/adm/status.js"></script>
 <script src="/Marmitaria/js/adm/modal/cadastroProd.js"></script>
 <script src="/Marmitaria/js/adm/acaoProd/excluir.js"></script>
+<script src="/Marmitaria/js/adm/modal/editarProd.js"></script>
 <?php
 include('../../../../padrao/footer.php');
 ?>

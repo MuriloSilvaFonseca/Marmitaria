@@ -54,46 +54,47 @@ $(document).ready(function(){
 
 
                         let card_prod = `
-                            <div class="col-12 col-md-6">
+                            <div class="col-12 col-md-6 card_produto">
                                 <div class="card shadow border-0 h-100">
                                     <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-start">
-                                        <div>
-                                        <small class="text-muted">ID: <strong>${idProd}</strong></small>
-                                        <h5 class="card-title mb-1 mt-1">${nome_produto}</h5>
-                                        <p class="text-muted mb-2">Categoria: <span class="fw-semibold">${categoria}</span></p>
+                                        <div class="d-flex justify-content-between align-items-start">
+                                            <div>
+                                            <small class="text-muted">ID: <strong>${idProd}</strong></small>
+                                            <h5 class="card-title mb-1 mt-1">${nome_produto}</h5>
+                                            <p class="text-muted mb-2">Categoria: <span class="fw-semibold">${categoria}</span></p>
+                                            </div>
+                                            <span class="badge bg-success" id="status-produto-${idProd}">${statusProd}</span>  
                                         </div>
-                                        <span class="badge bg-success" id="status-produto-${idProd}">${statusProd}</span>  
-                                    </div>
 
-                                    <ul class="list-unstyled mb-3">
-                                        <li><strong>Valor: </strong><span class="mask_valor">${valor_prod}</span></li>
-                                        <li><strong>Quantidade: </strong>${qtd_est}</li>
-                                        <li><strong>Data de Aquisição: </strong><span class="mask_data">${response.data_aqui_formatada}</span></li>
-                                        <li><strong>Data de Vencimento: </strong> <span class="mask_data">${response.data_venc_formatada}</span></li>
-                                    </ul>
+                                        <ul class="list-unstyled mb-3">
+                                            <li><strong>Valor: </strong><span class="mask_valor">${valor_prod}</span></li>
+                                            <li><strong>Quantidade: </strong>${qtd_est}</li>
+                                            <li><strong>Data de Aquisição: </strong><span class="mask_data">${response.data_aqui_formatada}</span></li>
+                                            <li><strong>Data de Vencimento: </strong> <span class="mask_data">${response.data_venc_formatada}</span></li>
+                                        </ul>
 
-                                    <p class="mb-3">
-                                        <strong>Descrição:</strong><br>
-                                        ${descricao}
-                                    </p>
+                                        <p class="mb-3">
+                                            <strong>Descrição:</strong><br>
+                                            ${descricao}
+                                        </p>
 
-                                    <div class="d-flex gap-2">
-                                        <form action="editarProd.php" method="post" class="mb-0">
-                                        <input type="hidden" name="id_prod_editar" value="${idProd}">
-                                        <button type="submit" class="btn btn-sm btn-success">✏️</button>
-                                        </form>
-                                        <button class="btn btn-danger btn-sm">
-                                        <i class="bi bi-trash"></i> Excluir
-                                        </button>
+                                        <div class="d-flex gap-2">
+                                            <form action="editarProd.php" method="post" class="mb-0">
+                                            <input type="hidden" name="id_prod_editar" value="${idProd}">
+                                            <button type="submit" class="btn btn-sm btn-success">✏️</button>
+                                            </form>
+                                            <div class="container_remover">
+                                                <input type="hidden" name="id_prod_remover" value="${idProd}">
+                                                <button class="btn btn-danger btn-sm removerBtn">🗑️</button>
+                                            </div>
 
-                                        <button type="submit" class="btn btn-sm btn-warning btnMudaProduto">
-                                        ⛔
-                                        </button>
-                                    </div>
+                                            <button type="submit" class="btn btn-sm btn-warning btnMudaProduto">
+                                            ⛔
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
+                            </div>
                         `;
 
                         $(".conj_card_prod").append(card_prod);

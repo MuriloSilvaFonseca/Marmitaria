@@ -48,7 +48,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Data de Vencimento</label>
-                <input type="date" name="dt_venc" class="form-control" value="<?= $preenche['dt_venc'] ?>">
+                <input type="date" name="dt_aquisicao" class="form-control" value="<?= $preenche['dt_aquisicao'] ?>" required>
             </div>
 
             <input type="hidden" name="id_prod" value="<?=$id_produto?>">

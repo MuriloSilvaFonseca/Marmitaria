@@ -1,20 +1,8 @@
 $(document).ready(function(){
     $(document).on("click", ".removerBtn", function(){
-        $.ajax({
-            url: "/Marmitaria/php/user/adm/delete/produto.php",
-            method: "POST",
-            dataType: "json",
-            data: {
-                id_prod_remover: id_prod_remover
-            },
-            success: function(res) {
-                console.log(res.status);
-            },
-            error: function(){
-                console.log("erro");
-            }
-        });
-
+        const removeBtn = $(this);
+        let id_prod_remover = $(this).prev().val();
+        
         Swal.fire({
             title: "Tem certeza?",
             text: "Você realmente deseja excluir este produto?",
@@ -26,8 +14,24 @@ $(document).ready(function(){
             cancelButtonText: "Cancelar"
         }).then((result) => {
             if (result.isConfirmed) {
-                let id_prod_remover = $(this).prev().val();
-            }
+                
+
+                $.ajax({
+                    url: "/Marmitaria/php/user/adm/delete/produto.php",
+                    method: "POST",
+                    dataType: "json",
+                    data: {
+                        id_prod_remover: id_prod_remover
+                    },
+                    success: function (res) {
+                        console.log(res.status);
+                        $(removeBtn).closest(".card_produto").remove();
+                    },
+                    error: function () {
+                        console.log("erro");
+                    }
+                });
+            }   
         });
     });
 });
