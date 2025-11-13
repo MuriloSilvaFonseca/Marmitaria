@@ -10,7 +10,10 @@ $(document).ready(function(){
         $.ajax({
             url:"/Marmitaria/php/user/adm/update/status.php",
             method:"post",
-            data: {id_user_status: id_user_status, condicao_status: condicao_status},
+            data: {
+                id_user_status: id_user_status, 
+                condicao_status: condicao_status
+            },
             dataType: "json",
             success: function(response) {
                 console.log(response);
@@ -55,26 +58,38 @@ $(document).ready(function(){
         });
     });
 
-    $('.btnMudaProduto').click(function(){
+    $('.card-body').on('click', '.btnMudaProduto', function(){
         const btnMuda = $(this)[0];
 
         let inputsProduto = $(btnMuda).siblings();
+        
+        var id_produto = $(inputsProduto[0]).val();
+        var condicao_status = $(inputsProduto[1]).val();
 
-        let id_produto = $(inputsProduto[0]).val();
-        let condicao_status = $(inputsProduto[1]).val();
+        console.log($(condicao_status));
 
         $.ajax({
             url: "/Marmitaria/php/user/adm/update/statusProd.php",
             method: "post",
-            data: {id_produto: id_produto, condicao_status: condicao_status},
+            data: {
+                id_produto: id_produto, 
+                condicao_status: condicao_status
+            },
             dataType: "json",
-            success: function(response) {
-                console.log(response);
-
+            success: function(res) {
                 const colunaStatusProd = $("#status-produto-"+id_produto);
-                $(colunaStatusProd).text(response.status_produto);
-                $()
-                
+                console.log(res);
+
+                if (res.status_produto == 'Disponível') {
+                    $(colunaStatusProd).text("Indisponível");
+                    condicao_status = "Indisponível";
+                    $(btnMuda).text("✅");
+
+                } else if (res.status_produto == "Indisponível") {
+                    $(colunaStatusProd).text("Disponível");
+                    condicao_status = "Disponível";
+                    $(btnMuda).text("⛔");
+                }
             }
         });
         

@@ -9,5 +9,17 @@
             $res = $conn -> query($sql);
 
             $preenche = $res -> fetch(PDO::FETCH_ASSOC);
+
+            echo json_encode([
+                "status" => "sucesso",
+                "id_prod" => $id_produto,
+                "nome_produto" => $preenche['nome_produto'],
+                "descricao" => $preenche['descricao'],
+                "valor_prod" => $preenche['valor_prod'],
+                "categoria" => $preenche['categoria'],
+                "qtd_est" => $preenche['qtd_est'],
+                "dt_aquisicao" => $preenche['dt_aquisicao'],
+                "dt_venc" => $preenche['dt_venc']
+            ]);
         }
 ?>

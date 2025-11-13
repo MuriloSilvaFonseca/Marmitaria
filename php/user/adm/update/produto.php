@@ -1,32 +1,38 @@
 <?php 
 include("../../../../padrao/conexao.php");
 
-    $id_produto = $_REQUEST['id_prod'];
+    $id_produto_edit = $_REQUEST['id_prod_editar'];
+    $nome_produto_edit = $_REQUEST["nome_produto_edit"];
+    $descricao_edit = $_REQUEST["descricao_edit"];
+    $valor_prod_edit = $_REQUEST["valor_prod_edit"];
+    $categoria_edit = $_REQUEST["categoria_edit"];
+    $qtd_est_edit = $_REQUEST["qtd_est_edit"];
+    $dt_aquisicao_edit = $_REQUEST["dt_aquisicao_edit"];
+    $dt_venc_edit = $_REQUEST["dt_venc_edit"];
 
-    $nome_produto = $_REQUEST["nome_produto"];
-    $descricao = $_REQUEST["descricao"];
-    $valor_prod = $_REQUEST["valor_prod"];
-    $categoria = $_REQUEST["categoria"];
-    $qtd_est = $_REQUEST["qtd_est"];
-    $dt_aquisicao = $_REQUEST["dt_aquisicao"];
-    $dt_venc = $_REQUEST["dt_venc"];
+    $valor_prod_edit = str_replace(',', '.', $valor_prod_edit);
 
     $sql = "UPDATE produto
-            SET nome_produto = '$nome_produto', descricao = '$descricao', valor_prod = '$valor_prod', categoria = '$categoria', qtd_est = '$qtd_est', dt_aquisicao = '$dt_aquisicao', dt_venc = '$dt_venc'
-            WHERE id_produto = '$id_produto'";
+        SET nome_produto = '$nome_produto_edit', descricao = '$descricao_edit', valor_prod = '$valor_prod_edit', categoria = '$categoria_edit', qtd_est = '$qtd_est_edit', dt_aquisicao = '$dt_aquisicao_edit', dt_venc = '$dt_venc_edit'
+        WHERE id_produto = '$id_produto_edit'";
 
     $res = $conn -> query($sql);
 
     if ($res == true) {
+        $valor_format = number_format($valor_prod_edit, 2, ',', '.');
+        $data_aqui_format = date("d/m/Y", strtotime($dt_aquisicao_edit));
+        $data_venc_format = date("d/m/Y", strtotime($dt_venc_edit));
 
-        echo "<script>alert('Editado com sucesso');</script>";
 
-        echo "<script>location.href='../produto/listProd.php';</script>";
-        
+        echo json_encode([
+            "status" => "sucesso",
+            "valor" => $valor_format,
+            "data_aqui_format" => $data_aqui_format,
+            "data_venc_format" => $data_venc_format
+        ]);
     } else {
-        echo "alert('Não foi possível Editar')";
-
-        echo "<script>location.href='../produto/editarProd.php';</script>";
+        echo json_encode([
+            "status" => "erro"
+        ]);
     }
-?>
 ?>

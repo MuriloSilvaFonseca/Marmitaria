@@ -22,18 +22,14 @@
         if ($res == true) {
             echo json_encode([
                 'status' => 'sucesso',
-                'status_produto' => $status == 'Disponível' ? 'Indísponivel' : 'Disponível',
-                'condicao_status' => $status == 'Disponível' ? 'Inativo' : 'Disponível',
-                'btnSttsProd' => $status == 'Disponível' ? '⛔' : '✅' 
+                'status_produto' => $status 
             ]);
             
-            
         } else {
-            echo "<script>alert('Não foi possivel mudar o status');</script>";
+
         }
 
     } else {
-        echo "<script>alert('Não foi possivel mudar o status');</script>";
 
     }
 ?>
