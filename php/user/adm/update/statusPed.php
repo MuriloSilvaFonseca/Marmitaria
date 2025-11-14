@@ -6,7 +6,6 @@
     $id_pedido = $_REQUEST['id_pedido'];
     $saida = isset($_REQUEST['saida']) ? $_REQUEST['saida'] : null;
 
-
     $capDatetime = new DateTime(null, new DateTimeZone('America/Sao_Paulo'));
 
     if($sttMod =='Em andamento') {
@@ -23,13 +22,11 @@
                     'id_pedido_resp' => $id_pedido,
                     'data_inicio' => date('d/m/Y H:i', strtotime($data_comeco))
                 ]);
-            } else {
-                echo "<script>location.href = '../pedidos/pedidos.php';</script>";
-            }
-            
+            } 
         } else {
-            echo "<script>alert('O pedido foi possível colocar o pedido em andamento');</script>";
-            echo "<script>location.href = '../pedidos/pedidos.php';</script>";
+            echo json_encode([
+                "status" => "Erro no banco"
+            ]);
         }
 
     } elseif ($sttMod =='Negado') {

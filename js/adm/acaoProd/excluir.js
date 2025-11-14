@@ -25,7 +25,14 @@ $(document).ready(function(){
                     },
                     success: function (res) {
                         console.log(res.status);
+                        Swal.fire({
+                            title: "Produto Excluido com sucesso",
+                            text: "Seu produto foi excluido com sucesso.",
+                            icon: "success"
+                        });
+                        
                         $(removeBtn).closest(".card_produto").remove();
+
                     },
                     error: function () {
                         console.log("erro");

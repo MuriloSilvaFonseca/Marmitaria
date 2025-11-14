@@ -211,17 +211,19 @@ include("../user/adm/select/dashboard.php")
 
                                 <div class="text-end mt-3 d-flex justify-content-end">
                                     <!-- <form action="../user/adm/update/statusPed.php" method="post"> -->
+                                    <div class="container_negarPed">
                                         <input type="hidden" name="sttMod" value="Negado">
                                         <input type="hidden" name="id_pedido" value="<?= $id ?>">
-                                        <button class="btn btn-danger btn-sm negar-btn">Negar Pedido</button>
-                                    <!-- </form> -->
+                                        <button class="btn btn-danger btn-sm negar-btn negarPed-btn">Negar Pedido</button>
+                                    </div>
 
 
-                                    <input type="hidden" name="sttMod" value="Em andamento" id="sttMod">
-                                    <input type="hidden" name="saida" id="saida" value="home-adm">
-                                    <input type="hidden" name="id_pedido" value="<?= $id ?>">
-                                    <button class="btn btn-success btn-sm ms-2 confPedido-btn >">Confirmar Pedido</button>
-
+                                    <div>
+                                        <input type="hidden" name="sttMod" value="Em andamento" id="sttMod">
+                                        <input type="hidden" name="saida" id="saida" value="home-adm">
+                                        <input type="hidden" name="id_pedido" value="<?= $id ?>">
+                                        <button class="btn btn-success btn-sm ms-2 confPedido-btn >">Confirmar Pedido</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -240,7 +242,7 @@ include("../user/adm/select/dashboard.php")
 
                     foreach ($pedsAndamento as $idAnd => $pediAndamento) { ?>
 
-                        <div class="card shadow-sm mb-3">
+                        <div class="card shadow-sm mb-3 card_andamento">
                             <div class="card-header bg-warning text-white">
                                 <div class="d-flex justify-content-between">
                                     <h5 class="mb-0">Pedido #<?= $idAnd ?></h5>
@@ -287,9 +289,8 @@ include("../user/adm/select/dashboard.php")
                                     </table>
                                 </div>
                                 <div class="text-end mt-3">
-            
-                                    <input type="hidden" name="sttMod" id="sttMod" value="Finalizado">
-                                    <input type="hidden" name="id_pedido" id="id_pedido" value="<?= $idAnd ?>">
+                                    <input type="hidden" name="sttMod" class="sttMod" value="Finalizado">
+                                    <input type="hidden" name="id_pedido" class="id_pedido" value="<?= $idAnd ?>">
                                     <button class="btn btn-success btn-sm ms-2 finPedido-btn">Finalizar pedido</button>
                                 </div>
                             </div>
@@ -299,6 +300,74 @@ include("../user/adm/select/dashboard.php")
             </div>
         </div>
     </div>
+
+
+
+<!-- MODAL NEGADO -->
+
+<div class="modal fade" id="modalNegadoProd" aria-labelledby="modalNegadoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-custom">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalMotivoLabel">Cadastro de Produto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Nome do produto</label>
+          <input type="text" name="nome_produto" id="nome_produto" class="form-control" placeholder="Marmita P" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="descricao" class="form-label">Descrição</label>
+          <textarea id="descricao" name="descricao" id="descricao" class="form-control" rows="5" placeholder="Digite a descrição..." required></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Valor (R$)</label>
+          <input type="text" name="valor_prod" id="valor_prod" class="form-control" id='valor' placeholder="19,99" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="Categoria" class="form-label">Categoria</label>
+          <select class="form-select" id="categoria" name="categoria" required>
+            <option selected value="Comum">Comum</option>
+            <option value="Fitness">Fitness</option>
+            <option value="LowCarb">LowCarb</option>
+            <option value="Vegetariano">Vegetariano</option>
+            <option value="Vegano">Vegano</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Quantidade</label>
+          <input type="number" name="qtd_est" id="qtd_est" class="form-control" placeholder="5" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Data de Aquisição</label>
+          <input type="date" name="dt_aquisicao" id="dt_aquisicao" class="form-control" placeholder="12/06/2025" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Data de Vencimento</label>
+          <input type="date" name="dt_venc" id="dt_venc" class="form-control" placeholder="23/07/2025">
+        </div>
+
+        <input type="hidden" name="status" id="status" value="Disponível">
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+        <button type="button" class="btn btn-primary" id="enviarCadastro-btn">Salvar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 
     <script src="../../js/adm/homeTroca.js"></script>
     <?php

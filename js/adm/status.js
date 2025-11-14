@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
     $('.btnMudaSttCLiente').click(function(){   
+        
         const btnStt = $(this)[0];
         let inputsCliente = $(btnStt).siblings();
 
@@ -51,14 +52,13 @@ $(document).ready(function(){
             data: {id_user_excluir: id_user_excluir}, 
             dataType: "json",
             success: function(response) {
-                console.log(response);
-
-                
+                console.log(response);      
             }
         });
     });
 
-    $('.card-body').on('click', '.btnMudaProduto', function(){
+    $(document).on('click', '.btnMudaProduto', function(){
+        console.log("teste");
         const btnMuda = $(this)[0];
 
         let inputsProduto = $(btnMuda).siblings();
@@ -66,7 +66,8 @@ $(document).ready(function(){
         var id_produto = $(inputsProduto[0]).val();
         var condicao_status = $(inputsProduto[1]).val();
 
-        console.log($(condicao_status));
+        console.log("Antes Ajax:" + id_produto, condicao_status);
+        
 
         $.ajax({
             url: "/Marmitaria/php/user/adm/update/statusProd.php",
@@ -78,18 +79,25 @@ $(document).ready(function(){
             dataType: "json",
             success: function(res) {
                 const colunaStatusProd = $("#status-produto-"+id_produto);
-                console.log(res);
 
                 if (res.status_produto == 'Disponível') {
                     $(colunaStatusProd).text("Indisponível");
-                    condicao_status = "Indisponível";
+                    $(colunaStatusProd).removeClass("bg-success").addClass("bg-warning");
+                    $(btnMuda).prev().val("Indisponível");
                     $(btnMuda).text("✅");
 
                 } else if (res.status_produto == "Indisponível") {
                     $(colunaStatusProd).text("Disponível");
-                    condicao_status = "Disponível";
+                    $(colunaStatusProd).removeClass("bg-warning").addClass("bg-success");
+                    $(btnMuda).prev().val("Disponível");
                     $(btnMuda).text("⛔");
                 }
+
+                Swal.fire({
+                    title: "Status modificado",
+                    text: "O status do seu produto foi modificado com sucesso.",
+                    icon: "success"
+                });
             }
         });
         

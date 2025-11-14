@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $(".confPedido-btn").click(function(){
+    $(document).on("click", ".confPedido-btn", (function(){
         const btnConfPedido = $(this);
         var id_pedido = btnConfPedido.prev().val();
         let sttMod = btnConfPedido.siblings("#sttMod").val();
@@ -30,6 +30,8 @@ $(document).ready(function() {
                 var conj_card_emAndamento = $(".conj-card-emAndamento");
                 conj_card_emAndamento.append(card_mod);
 
+                $(card_mod).addClass("card_andamento");
+
                 var corCardMod = $(card_mod).children().first();
                 corCardMod.removeClass("bg-secondary").addClass("bg-warning");
                 
@@ -39,10 +41,15 @@ $(document).ready(function() {
                 var data_inicio = textoStts.parent().next();
                 data_inicio.text("Iniciado em: "+ response.data_inicio);
                 
-                sttMod = "Finalizado";
+                
+                
                 btnConfPedido.siblings("#saida").remove();
                 let botaoNegar = btnConfPedido.siblings(".negar-btn");
                 botaoNegar.remove();
+
+                btnConfPedido.parent().prev().remove()
+                let teste = $(btnConfPedido).prev().prev().val("Finalizado");
+                console.log(teste);
 
                 btnConfPedido.removeClass("confPedido-btn").addClass("finPedido-btn");
                 btnConfPedido.text("Finalizar Pedido");
@@ -58,28 +65,30 @@ $(document).ready(function() {
                 });
             },
             error: function(response) {
-
+                console.log("Erro Andamento");
+                
             }
         });
 
-        
-    });
+        })
+    );
 
     $(document).on("click", ".finPedido-btn",function(){
         const btnFinPedido = $(this);
-        let sttMod = btnFinPedido.siblings("#sttMod").val();
-        let id_pedido = btnFinPedido.siblings("#id_pedido").val();
+        let sttMod = $(btnFinPedido.siblings()[0]).val();
+        let id_pedido = $(btnFinPedido.siblings()[1]).val();
+
+        console.log(id_pedido);
         
         $.ajax({
             url: "/Marmitaria/php/user/adm/update/statusPed.php",
             method: "post",
             data: {
-                sttMod: sttMod, id_pedido: id_pedido
+                sttMod: sttMod, 
+                id_pedido: id_pedido
             },
             dataType: "json",
             success: function(response) {
-
-                console.log(response);
                 
 
                 if (response.status == 'sucesso') {
@@ -105,5 +114,12 @@ $(document).ready(function() {
                 console.log("erro");
             }            
         });
+    });
+
+    $(document).on("click", ".negarPed-btn", function(){
+        const btnNeg = $(this);
+        let id_pedido = $(btnNeg).prev()
+        
+        
     });
 });
